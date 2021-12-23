@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_putunbr_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/22 14:04:38 by anaszanane        #+#    #+#             */
-/*   Updated: 2021/12/23 07:30:04 by azanane          ###   ########.fr       */
+/*   Created: 2021/12/23 08:33:18 by azanane           #+#    #+#             */
+/*   Updated: 2021/12/23 08:37:13 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putstr(char	*s, int	*ct2)
+void	ft_putunbrbase(unsigned int n, unsigned int b, char	*base, int	*ct2)
 {
-	int		i;
-
-	i = -1;
-	if (!s)
+	if (n % 16 >= 0 && n % 16 <= 16)
 	{
-		*ct2 += 6;
-		write(1, "(null)", 6);
-		return ;
-	}
-	while (s[++i])
-	{
-		write(1, &s[i], 1);
-		*ct2 += 1;
+		if (n > b - 1)
+			ft_putnbr_base(n / b, b, base, ct2);
+		ft_putchar(base[n % b], ct2);
 	}
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anaszanane <anaszanane@student.42.fr>      +#+  +:+       +#+         #
+#    By: azanane <azanane@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/22 19:49:40 by anaszanane        #+#    #+#              #
-#    Updated: 2021/12/22 19:52:40 by anaszanane       ###   ########.fr        #
+#    Updated: 2021/12/23 09:23:39 by azanane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ GREEN=$'\x1b[32m
 BLUE=$'\x1b[34m
 
 SRCS		=	./ft_printf.c ./ft_putchar.c ./ft_putnbr_base.c \
-				./ft_putnbr.c ./ft_putstr.c \
+				./ft_putnbr.c ./ft_putstr.c ./ft_putunbr.c ./ft_putunbr_base.c \
+				./ft_putadd.c \
 
 OBJS		=	${SRCS:.c=.o}
 

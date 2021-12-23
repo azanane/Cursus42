@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_putunbr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/22 14:04:38 by anaszanane        #+#    #+#             */
-/*   Updated: 2021/12/23 07:30:04 by azanane          ###   ########.fr       */
+/*   Created: 2021/12/23 08:03:18 by azanane           #+#    #+#             */
+/*   Updated: 2021/12/23 08:14:05 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putstr(char	*s, int	*ct2)
+void	ft_putunbr(unsigned int n, int	*ct2)
 {
-	int		i;
-
-	i = -1;
-	if (!s)
+	if (n % 10 >= 0 && n % 10 <= 9)
 	{
-		*ct2 += 6;
-		write(1, "(null)", 6);
-		return ;
-	}
-	while (s[++i])
-	{
-		write(1, &s[i], 1);
-		*ct2 += 1;
+		if (n > 9)
+			ft_putnbr(n / 10, ct2);
+		ft_putchar(n % 10 + '0', ct2);
 	}
 }
