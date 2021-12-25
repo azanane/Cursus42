@@ -6,7 +6,7 @@
 /*   By: anaszanane <anaszanane@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 13:15:55 by anaszanane        #+#    #+#             */
-/*   Updated: 2021/12/22 20:22:12 by anaszanane       ###   ########.fr       */
+/*   Updated: 2021/12/22 23:02:52 by anaszanane       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ void	ft_conv_sorting(const char	*str, int	*i, va_list	arg, int	*ct2)
 	else if (str [*i + 1] == 'p')
 	{
 		write(1, "0x", 2);
-		ft_putnbr_base(va_arg(arg, int), 16, "0123456789abcdef", ct2);
+		nb = va_arg(arg, int);
+		if (nb < 0)
+		ft_putnbr_base(nb, 16, &str[*i + 1], ct2);
+		// ft_putstr_hexa(va_arg(arg, char	*), ct2);
 	}	
 	else if (str[*i + 1] == 'd' || str[*i + 1] == 'i')
 		ft_putnbr(va_arg(arg, int), ct2);
@@ -34,7 +37,7 @@ void	ft_conv_sorting(const char	*str, int	*i, va_list	arg, int	*ct2)
 			ft_putnbr(nb, ct2);
 	}
 	else if (str[*i + 1] == 'x')	
-		ft_putnbr_base(va_arg(arg, unsigned int), 16, "0123456789abcdef", ct2);
+		ft_putnbr_base(va_arg(arg, unsigned int), 16, &str[*i + 1], ct2);
 	else if (str[*i + 1] == '%')
 	{
 		write(1, "%", 1);
@@ -70,17 +73,19 @@ int	ft_printf(const char	*str, ...)
 	return (i - (ct * 2) + ct2);
 }
 
-// int	main(void)
-// {
-// 	// ft_printf("A%cas %c%c\n", 'n', 'a', 'z');
-// 	// printf("A%cas %c%c\n\n", 'n', 'a', 'z');
-// 	// ft_printf("A%sas %s %s\n", "Nas", "Zanane", "Bg");
-// 	// printf("A%sas %s %s\n\n", "Nas", "Zanane", "Bg");
-// 	ft_printf("%p %p %p\n", "Nas", "Zanane", "Bg");
-// 	printf("%p %p %p\n\n", "Nas", "Zanane", "Bg");
-// 	// ft_printf("A%das %u %u  %% %x\n", 8, 10, -10, -10);
-// 	// printf("A%das %u %u  %% %x\n\n", 8, 10, -10, -10);
-// 	// ft_printf("%x %x %x %x\n", 233, -2000, INT_MIN, INT_MAX);
-// 	// printf("%x %x %x %x", 233, -2000, INT_MIN, INT_MAX);
-// 	return (0);
-// }
+int	main(void)
+{
+	char	*bg;
+	
+	// ft_printf("A%cas %c%c\n", 'n', 'a', 'z');
+	// printf("A%cas %c%c\n\n", 'n', 'a', 'z');
+	// ft_printf("A%sas %s %s\n", "Nas", "Zanane", "Bg");
+	// printf("A%sas %s %s\n\n", "Nas", "Zanane", "Bg");
+	ft_printf("%p %p %p\n", &bg, "Zanane", "Bg");
+	printf("%p %p %p\n\n", &bg, "Zanane", "Bg");
+	// ft_printf("A%das %u %u  %% %x\n", 8, 10, -10, -10);
+	// printf("A%das %u %u  %% %x\n\n", 8, 10, -10, -10);
+	// ft_printf("%x %x %x %x\n", 233, -2000, INT_MIN, INT_MAX);
+	// printf("%x %x %x %x", 233, -2000, INT_MIN, INT_MAX);
+	return (0);
+}
