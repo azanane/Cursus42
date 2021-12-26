@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaszanane <anaszanane@student.42.fr>      +#+  +:+       +#+        */
+/*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 11:47:50 by anaszanane        #+#    #+#             */
-/*   Updated: 2021/12/25 06:36:42 by anaszanane       ###   ########.fr       */
+/*   Updated: 2021/12/26 19:15:35 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	ft_freee(char	**tab)
 // 	}
 // }
 // 
-void	ft_parsing_2(char	**file, int	i)
+void	ft_parsing_2(char	**file, int i)
 {
 	t_v		v;
 	char	**line;
@@ -93,7 +93,7 @@ void	ft_parsing_2(char	**file, int	i)
 		while (file[i][++(v.n)])
 		v.tab[i] = malloc(sizeof(int) * v.n);
 		v.n = -1;
-		while(line[++v.n])
+		while (line[++v.n])
 			v.tab[v.j][v.n] = ft_atoi(line[v.n]);
 		ft_freee(line);
 		v.j++;
@@ -103,25 +103,29 @@ void	ft_parsing_2(char	**file, int	i)
 	// ft_parsing_3(v.tab, v.j, v.n);
 }
 
-void	ft_parsing(int	i)
+void	ft_parsing(int i, char	*ptr)
 {
 	t_v	v;
 	t_s	s;
 
 	v.fd = open("test_maps/42.fdf", O_RDONLY);
-	s.file = malloc(sizeof(char *) * i + 1);
+	s.file = malloc(sizeof(char *) * (i + 1));
 	s.file[i] = 0;
 	i = 0;
 	s.s = get_next_line(v.fd);
-	while (s.s)
+	while (s.s && s.file[i])
 	{
-		v.n = -1;
-		while (s.s[++(v.n)])
-		s.file[i] = malloc(sizeof(char) * v.n + 1);
+		v.n = 0;
+		while (s.s[v.n])
+				v.n++;
+		s.file[i] = malloc(sizeof(char) * (v.n + 1));
 		s.file[i][v.n] = 0;
-		v.n = -1;
-		while (s.s[++v.n])
+		v.n = 0;
+		while (s.s[v.n])
+		{
 			s.file[i][v.n] = s.s[v.n];
+			v.n++;
+		}
 		free(s.s);
 		s.s = NULL;
 		s.s = get_next_line(v.fd);
@@ -136,9 +140,11 @@ int	main(/*int argc, char	**argv*/void)
 	int		fd;
 	int		i;
 	char	*s;
+	char	*ptr;
 
 	// if (argc == 1)
 	// 	return (0);
+	ptr = mlx_init();
 	fd = open("test_maps/42.fdf", O_RDONLY);
 	s = get_next_line(fd);
 	i = 0;
@@ -151,6 +157,7 @@ int	main(/*int argc, char	**argv*/void)
 		s = get_next_line(fd);
 	}
 	close(fd);
-	ft_parsing(i);
+	ft_parsing(i, ptr);
+	mlx_loop(ptr);
 	return (0);
 }
