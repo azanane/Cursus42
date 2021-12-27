@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 11:14:32 by anaszanane        #+#    #+#             */
-/*   Updated: 2021/12/26 17:35:14 by azanane          ###   ########.fr       */
+/*   Updated: 2021/12/27 18:00:28 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,18 @@ typedef struct s_algo
 	int		dy;
 	int		dy1;
 	int		dx;
-	int		dp;
+	int		dx1;
+	int		di;
 	int		de;
 	int		dne;
 	void	*ptr;
 	void	*win;
 }	t_algo;
 
-int		main(/*int	argc, char	**argv*/void);
-void	ft_parsing(int i);
+int		main(void);
+void	ft_parsing(int i, t_algo	*a);
 char	**ft_split(char const *s, char c);
 int		ft_atoi(const char	*str);
-void	ft_wireframe(int	**tab, int ymax, int xmax);
+void	ft_wireframe(int	**tab, int ymax, int xmax, t_algo	*a);
 
 #endif

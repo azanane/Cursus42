@@ -6,26 +6,28 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 11:47:50 by anaszanane        #+#    #+#             */
-/*   Updated: 2021/12/26 19:15:35 by azanane          ###   ########.fr       */
+/*   Updated: 2021/12/27 18:35:42 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_freee(char	**tab)
+char	**ft_freee(char	**tab)
 {
 	int	j;
 
-	j = -1;
-	while (tab[++j])
+	j = 0;
+	while (tab[j])
 	{
 		free(tab[j]);
 		tab[j] = NULL;
+		j++;
 	}
 	free(tab);
+	return (NULL);
 }
 
-// void	ft_parsing_3(int	**tab, int	i, int	n)
+// void	ft_parsing_3(int	**tab, int	i, int	n, char	*ptr)
 // {
 // 	int	*tab2;
 // 	t_v	v;
@@ -78,7 +80,7 @@ void	ft_freee(char	**tab)
 // 	}
 // }
 // 
-void	ft_parsing_2(char	**file, int i)
+void	ft_parsing_2(char	**file, int i, t_algo *a)
 {
 	t_v		v;
 	char	**line;
@@ -99,16 +101,16 @@ void	ft_parsing_2(char	**file, int i)
 		v.j++;
 	}
 	ft_freee(file);
-	ft_wireframe(v.tab, v.j, v.n);
-	// ft_parsing_3(v.tab, v.j, v.n);
+	ft_wireframe(v.tab, v.j, v.n, a);
 }
+	// ft_parsing_3(v.tab, v.j, v.n, ptr);
 
-void	ft_parsing(int i, char	*ptr)
+void	ft_parsing(int i, t_algo	*a)
 {
 	t_v	v;
 	t_s	s;
 
-	v.fd = open("test_maps/42.fdf", O_RDONLY);
+	v.fd = open("test_maps/elem2.fdf", O_RDONLY);
 	s.file = malloc(sizeof(char *) * (i + 1));
 	s.file[i] = 0;
 	i = 0;
@@ -117,7 +119,7 @@ void	ft_parsing(int i, char	*ptr)
 	{
 		v.n = 0;
 		while (s.s[v.n])
-				v.n++;
+			v.n++;
 		s.file[i] = malloc(sizeof(char) * (v.n + 1));
 		s.file[i][v.n] = 0;
 		v.n = 0;
@@ -132,20 +134,29 @@ void	ft_parsing(int i, char	*ptr)
 		i++;
 	}
 	close(v.fd);
-	ft_parsing_2(s.file, i);
+	ft_parsing_2(s.file, i, a);
 }
 
-int	main(/*int argc, char	**argv*/void)
+int	ft_close(int keycode, t_algo *v)
+{
+	if (keycode == 53)
+	{
+		mlx_destroy_window(v->ptr, v->win);
+		exit(0);
+	}
+	return (0);
+}
+
+int	main(void)
 {
 	int		fd;
 	int		i;
 	char	*s;
-	char	*ptr;
+	void	*ptr;
+	t_algo	a;
 
-	// if (argc == 1)
-	// 	return (0);
-	ptr = mlx_init();
-	fd = open("test_maps/42.fdf", O_RDONLY);
+	a.ptr = mlx_init();
+	fd = open("test_maps/elem2.fdf", O_RDONLY);
 	s = get_next_line(fd);
 	i = 0;
 	while (s)
@@ -157,7 +168,8 @@ int	main(/*int argc, char	**argv*/void)
 		s = get_next_line(fd);
 	}
 	close(fd);
-	ft_parsing(i, ptr);
-	mlx_loop(ptr);
+	ft_parsing(i, &a);
+	// mlx_hook(a.win, 2, 1L << 0, ft_close, &a);
+	mlx_loop(a.ptr);
 	return (0);
 }
