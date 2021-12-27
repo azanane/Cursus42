@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/13 12:33:13 by azanane           #+#    #+#             */
-/*   Updated: 2021/12/27 22:48:00 by azanane          ###   ########.fr       */
+/*   Created: 2021/12/19 13:44:09 by azanane           #+#    #+#             */
+/*   Updated: 2021/12/19 15:33:26 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_free(char	*s)
 {
@@ -29,9 +29,9 @@ char	*ft_line(char	*s, int	*i)
 	while (s[*i] && s[*i] != '\n')
 		*i += 1;
 	if (s[*i] == '\n')
-		str = malloc(sizeof(char) * (*i + 2));
+		str = malloc(sizeof(char) * *i + 2);
 	else
-		str = malloc(sizeof(char) * (*i + 1));
+		str = malloc(sizeof(char) * *i + 1);
 	if (str == 0)
 		return (NULL);
 	*i = -1;
@@ -76,29 +76,29 @@ char	*ft_fill(char *s, int fd)
 
 char	*get_next_line(int fd)
 {
-	static char	*s;
-	char		*dest;
+	static char	*s[OPEN_MAX];
+	char		*dest[OPEN_MAX + 1];
 	int			i;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	s = ft_fill(s, fd);
-	if (s && !*s)
+	s[fd] = ft_fill(s[fd], fd);
+	if (s[fd] && !*s[fd])
 	{
-		s = ft_free(s);
+		s[fd] = ft_free(s[fd]);
 		return (NULL);
 	}
-	dest = ft_line(s, &i);
-	if (s && s[i] == '\0')
-		s = ft_free(s);
-	if (dest && s && !(*dest))
+	dest[fd] = ft_line(s[fd], &i);
+	if (s[fd] && s[fd] == '\0')
+		s[fd] = ft_free(s[fd]);
+	if (dest[fd] && s[fd] && !(*dest[fd]))
 	{
-		dest = ft_free(dest);
-		s = ft_free(s);
+		dest[fd] = ft_free(dest[fd]);
+		s[fd] = ft_free(s[fd]);
 		return (NULL);
 	}
-	s = ft_substr(s, i + 1, ft_strlen(s) - i + 1);
-	if (s && !(*s))
-		s = ft_free(s);
-	return (dest);
+	s[fd] = ft_substr(s[fd], i + 1, ft_strlen(s[fd]) - i + 1);
+	if (s[fd] && !(*s[fd]))
+		s[fd] = ft_free(s[fd]);
+	return (dest[fd]);
 }

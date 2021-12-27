@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 11:47:50 by anaszanane        #+#    #+#             */
-/*   Updated: 2021/12/27 21:55:45 by azanane          ###   ########.fr       */
+/*   Updated: 2021/12/27 22:59:47 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	ft_parsing(int i, t_algo	*a)
 	t_v	v;
 	t_s	s;
 
-	v.fd = open("test_maps/elem2.fdf", O_RDONLY);
+	v.fd = open("test_maps/plat.fdf", O_RDONLY);
 	s.file = malloc(sizeof(char *) * (i + 1));
 	s.file[i] = 0;
 	i = 0;
@@ -129,6 +129,7 @@ void	ft_parsing(int i, t_algo	*a)
 			s.file[i][v.n] = s.s[v.n];
 			v.n++;
 		}
+		dprintf(1, "%p\n", s.s);
 		free(s.s);
 		s.s = NULL;
 		s.s = get_next_line(v.fd);
@@ -156,14 +157,14 @@ int	main(void)
 	t_algo	a;
 
 	a.ptr = mlx_init();
-	fd = open("test_maps/elem2.fdf", O_RDONLY);
+	fd = open("test_maps/plat.fdf", O_RDONLY);
 	s = get_next_line(fd);
 	i = 0;
 	while (s)
 	{
 		if (s[0] != '\n')
 			i++;
-		free(s);
+		ft_free(s);
 		s = NULL;
 		s = get_next_line(fd);
 	}
