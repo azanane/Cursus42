@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 11:47:50 by anaszanane        #+#    #+#             */
-/*   Updated: 2021/12/27 18:35:42 by azanane          ###   ########.fr       */
+/*   Updated: 2021/12/27 21:55:45 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,10 @@ void	ft_parsing_2(char	**file, int i, t_algo *a)
 	v.j = 0;
 	while (file[++i])
 	{
-		v.n = -1;
+		v.n = 0;
 		line = ft_split(file[i], ' ');
 		while (file[i][++(v.n)])
+			v.n++;
 		v.tab[i] = malloc(sizeof(int) * v.n);
 		v.n = -1;
 		while (line[++v.n])
@@ -152,7 +153,6 @@ int	main(void)
 	int		fd;
 	int		i;
 	char	*s;
-	void	*ptr;
 	t_algo	a;
 
 	a.ptr = mlx_init();
@@ -169,7 +169,7 @@ int	main(void)
 	}
 	close(fd);
 	ft_parsing(i, &a);
-	// mlx_hook(a.win, 2, 1L << 0, ft_close, &a);
+	mlx_hook(a.win, 2, 1L << 0, ft_close, &a);
 	mlx_loop(a.ptr);
 	return (0);
 }

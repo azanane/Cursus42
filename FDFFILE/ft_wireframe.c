@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 18:13:00 by anaszanane        #+#    #+#             */
-/*   Updated: 2021/12/27 18:35:38 by azanane          ###   ########.fr       */
+/*   Updated: 2021/12/27 21:44:23 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_trace_2(t_algo	*a)
 	deltay /= pixels;
 	pixelx = a->dx + 960;
 	pixely = a->dy + 540;
-	while (pixels)
+	while (pixels > 0)
 	{
 		mlx_pixel_put(a->ptr, a->win, pixelx, pixely, 0xFFFFFF);
 		pixelx += deltax;
@@ -85,5 +85,5 @@ void	ft_wireframe(int	**tab, int ymax, int xmax, t_algo *a)
 		tab[v.n] = NULL;
 		v.n++;
 	}
-	// free(tab);
+	free(tab);
 }
