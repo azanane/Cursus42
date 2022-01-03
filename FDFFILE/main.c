@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 11:47:50 by anaszanane        #+#    #+#             */
-/*   Updated: 2021/12/27 22:59:47 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/03 17:54:41 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	**ft_freee(char	**tab)
 // 	}
 // }
 // 
-void	ft_parsing_2(char	**file, int i, t_algo *a)
+void	ft_parsing_2(int i, t_algo *a)
 {
 	t_v		v;
 	char	**line;
@@ -88,11 +88,11 @@ void	ft_parsing_2(char	**file, int i, t_algo *a)
 	v.tab = malloc(sizeof(int *) * i);
 	i = -1;
 	v.j = 0;
-	while (file[++i])
+	while (a->file[++i])
 	{
 		v.n = 0;
-		line = ft_split(file[i], ' ');
-		while (file[i][++(v.n)])
+		line = ft_split(a->file[i], ' ');
+		while (a->file[i][v.n])
 			v.n++;
 		v.tab[i] = malloc(sizeof(int) * v.n);
 		v.n = -1;
@@ -101,42 +101,37 @@ void	ft_parsing_2(char	**file, int i, t_algo *a)
 		ft_freee(line);
 		v.j++;
 	}
-	ft_freee(file);
+	// ft_freee(a->file);
 	ft_wireframe(v.tab, v.j, v.n, a);
 }
 	// ft_parsing_3(v.tab, v.j, v.n, ptr);
 
-void	ft_parsing(int i, t_algo	*a)
+void	ft_parsing(int i, t_algo *a, char *av)
 {
 	t_v	v;
-	t_s	s;
 
-	v.fd = open("test_maps/plat.fdf", O_RDONLY);
-	s.file = malloc(sizeof(char *) * (i + 1));
-	s.file[i] = 0;
+	v.fd = open(av, O_RDONLY);
+	a->file = malloc(sizeof(char *) * (i + 1));
+	a->file[i] = 0;
 	i = 0;
-	s.s = get_next_line(v.fd);
-	while (s.s && s.file[i])
+	a->s = get_next_line(v.fd);
+	while (a->s)
 	{
 		v.n = 0;
-		while (s.s[v.n])
+		while (a->s[v.n])
 			v.n++;
-		s.file[i] = malloc(sizeof(char) * (v.n + 1));
-		s.file[i][v.n] = 0;
-		v.n = 0;
-		while (s.s[v.n])
-		{
-			s.file[i][v.n] = s.s[v.n];
-			v.n++;
-		}
-		dprintf(1, "%p\n", s.s);
-		free(s.s);
-		s.s = NULL;
-		s.s = get_next_line(v.fd);
+		a->file[i] = malloc(sizeof(char) * (v.n + 1));
+		a->file[i][v.n] = 0;
+		v.n = -1;
+		while (a->s[++v.n])
+			a->file[i][v.n] = a->s[v.n];
+		free(a->s);
+		a->s = NULL;
+		a->s = get_next_line(v.fd);
 		i++;
 	}
 	close(v.fd);
-	ft_parsing_2(s.file, i, a);
+	ft_parsing_2(i, a);
 }
 
 int	ft_close(int keycode, t_algo *v)
@@ -149,15 +144,17 @@ int	ft_close(int keycode, t_algo *v)
 	return (0);
 }
 
-int	main(void)
+int	main(int ac, char **av)
 {
 	int		fd;
 	int		i;
 	char	*s;
 	t_algo	a;
 
+	if (ac != 2)
+		return (0);
 	a.ptr = mlx_init();
-	fd = open("test_maps/plat.fdf", O_RDONLY);
+	fd = open(av[1], O_RDONLY);
 	s = get_next_line(fd);
 	i = 0;
 	while (s)
@@ -169,7 +166,7 @@ int	main(void)
 		s = get_next_line(fd);
 	}
 	close(fd);
-	ft_parsing(i, &a);
+	ft_parsing(i, &a, av[1]);
 	mlx_hook(a.win, 2, 1L << 0, ft_close, &a);
 	mlx_loop(a.ptr);
 	return (0);

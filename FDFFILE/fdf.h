@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 11:14:32 by anaszanane        #+#    #+#             */
-/*   Updated: 2021/12/27 18:00:28 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/03 18:41:47 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,6 @@ typedef struct s_v
 	int		fd;
 }	t_v;
 
-typedef struct s_s
-{
-	char	**file;
-	char	*s;
-}	t_s;
-
 typedef struct s_algo
 {
 	int		x;
@@ -48,17 +42,21 @@ typedef struct s_algo
 	int		dy1;
 	int		dx;
 	int		dx1;
-	int		di;
-	int		de;
-	int		dne;
+	int		m;
+	double	c;
+	char	*s;
+	char	**file;
+	int		*col;
 	void	*ptr;
 	void	*win;
 }	t_algo;
 
-int		main(void);
-void	ft_parsing(int i, t_algo	*a);
+int		main(int ac, char **av);
+void	ft_parsing(int i, t_algo *a, char *av);
 char	**ft_split(char const *s, char c);
-int		ft_atoi(const char	*str);
-void	ft_wireframe(int	**tab, int ymax, int xmax, t_algo	*a);
+int		ft_atoi(const char *str);
+void	ft_wireframe(int **tab, int ymax, int xmax, t_algo	*a);
+char	**ft_freee(char	**tab);
+int		ft_atoi_b(char *str);
 
 #endif

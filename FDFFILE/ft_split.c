@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 08:50:40 by azanane           #+#    #+#             */
-/*   Updated: 2021/12/27 21:08:09 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/03 08:51:03 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ static int	ft_pb_malloc(char	**tab)
 char	**ft_split(char const *s, char c)
 {
 	char	**tab;
-	char	*str;
 	int		i;
 	int		j;
 
