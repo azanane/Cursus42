@@ -1,41 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_b.c                                        :+:      :+:    :+:   */
+/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 17:19:29 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/03 19:10:15 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/04 16:31:18 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "utils.h"
+#include "../get_next_line/get_next_line.h"
 
-int	ft_atoi_b(char *str)
+int	ft_b(char *str, char *base)
 {
 	int	nb;
-	char	s[9];
 	int	i;
-	int	n;
+	int	j;
+	int	ct;
 
-	s[8] = 0;
 	nb = 0;
-	i = 0;
-	n = 0;
-	// while (str[i - 1] != 'x')
-	// 	i++;
-	while ((str[i] >= '0' && str[i] <= '9')
-		|| (str[i] >= 'a' && str[i] <= 'z')
-		|| (str[i] >= 'A' && str[i] <= 'Z'))
+	i = -1;
+	ct = 1;
+	if (str[++i] == '-')
+		ct *= -1;
+	else if (str[i] == '+')
+		i++;
+	while (str[i - 1] != 'x' && str[i - 1] != 'X')
+		i++;
+	while (str[i] != '\n' && str[i] != 0 && str[i] != ' ')
 	{
-		s[n] = str[i];
-		n++;
+		j = 0;
+		if (str[i] >= 'a' && str[i] <= 'z')
+			str[i] = ft_toupper(str[i]);
+		while (base[j] && base[j] != str[i])
+			j++;
+		nb = nb * ft_strlen(base) + j;
 		i++;
 	}
-	dprintf(1, "%d\n", 0xFFFFFF);
-	dprintf(1, "%d\n", (int)s[0]);
-	dprintf(1, "%s\n", s);
-	nb = *(int *)s;
 	return (nb);
 }

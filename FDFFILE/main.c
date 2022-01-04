@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 11:47:50 by anaszanane        #+#    #+#             */
-/*   Updated: 2022/01/03 17:54:41 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/04 16:16:09 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ void	ft_parsing_2(int i, t_algo *a)
 		ft_freee(line);
 		v.j++;
 	}
-	// ft_freee(a->file);
 	ft_wireframe(v.tab, v.j, v.n, a);
 }
 	// ft_parsing_3(v.tab, v.j, v.n, ptr);

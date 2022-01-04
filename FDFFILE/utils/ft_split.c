@@ -6,11 +6,11 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 08:50:40 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/03 08:51:03 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/04 16:30:23 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "utils.h"
 
 static int	ft_check_base(char str, char	*charset)
 {

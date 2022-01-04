@@ -6,11 +6,11 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 09:15:09 by azanane           #+#    #+#             */
-/*   Updated: 2021/12/26 17:35:01 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/04 16:30:31 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "utils.h"
 
 int	ft_atoi(const char	*str)
 {

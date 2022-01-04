@@ -6,7 +6,7 @@
 #    By: azanane <azanane@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/03 08:31:26 by azanane           #+#    #+#              #
-#    Updated: 2022/01/03 17:48:17 by azanane          ###   ########.fr        #
+#    Updated: 2022/01/04 16:29:50 by azanane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,7 @@ RED=$'\x1b[31m
 GREEN=$'\x1b[32m
 BLUE=$'\x1b[34m
 
-SRCS		=	./main.c ./ft_wireframe.c ./ft_split.c ./ft_atoi.c \
-				./ft_atoi_b.c \
+SRCS		=	./main.c ./ft_wireframe.c \
 
 OBJS		=	${SRCS:.c=.o}
 
@@ -43,7 +42,7 @@ ${NAME}:	${OBJS} ${INCLUDES}
 			@echo "${GREEN}[CREATE]${END} ${NAME}"
 
 run:		${NAME}
-			gcc ${LIBX} ${OBJS} get_next_line/*.c -o fdf
+			gcc ${LIBX} ${OBJS} get_next_line/*.c utils/*.c -o fdf
 
 clean:
 			@${RM} ${OBJS}
