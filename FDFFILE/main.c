@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 11:47:50 by anaszanane        #+#    #+#             */
-/*   Updated: 2022/01/04 16:16:09 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/04 16:32:51 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,59 +27,6 @@ char	**ft_freee(char	**tab)
 	return (NULL);
 }
 
-// void	ft_parsing_3(int	**tab, int	i, int	n, char	*ptr)
-// {
-// 	int	*tab2;
-// 	t_v	v;
-
-// 	tab2 = malloc(sizeof(int) * (i * n));
-// 	v.j = -1;
-// 	v.m = -1;
-// 	while (++(v.j) < i)
-// 	{
-// 		v.d = -1;
-// 		while(++(v.d) < n && ++v.m < i * n)
-// 			tab2[v.m] = tab[v.j][v.d];
-// 	}
-// 	v.d = -1;
-// 	v.j = tab2[0];
-// 	while (++v.d < i * n)
-// 	{
-// 		if (tab2[v.d] < v.j)
-// 			v.j = tab2[v.d];
-// 	}
-// 	v.m = v.j - 1;
-// 	v.k = 1;
-// 	v.fd = 0;
-// 	while (v.fd < i * n + 1)
-// 	{
-// 		v.d = -1;
-// 		while (++v.d < i * n)
-// 		{
-// 			if (tab2[v.d] > v.m && tab2[v.d] != v.j)
-// 				v.m = tab2[v.d];
-// 		}
-// 		v.d = -1;
-// 		printf(" %d \n", v.x);
-// 		while (++v.d < i * n)
-// 		{
-// 			if (tab2[v.d] == v.m && tab2[v.d] != v.j/* && v.k == 1*/)
-// 				tab2[v.d] = v.x - 1;/*(1 * v.k + ((v.m / INT_MAX) + 1));
-// 			else if (tab2[v.d] == v.m && tab2[v.d] != v.j && v.k != 1)
-// 				tab2[v.d] = v.x - (1 * v.k + ((v.m / INT_MAX) + 1)) / v.x; */
-// 		}
-// 		v.k += 1;
-// 		v.x = v.x - 1;
-// 		v.m = v.j - 1;
-// 		v.fd++;
-// 	}
-// 	v.d = -1;
-// 	while (++v.d < i * n)
-// 	{
-// 		printf(" %d ", tab2[v.d]);
-// 	}
-// }
-// 
 void	ft_parsing_2(int i, t_algo *a)
 {
 	t_v		v;
@@ -103,7 +50,6 @@ void	ft_parsing_2(int i, t_algo *a)
 	}
 	ft_wireframe(v.tab, v.j, v.n, a);
 }
-	// ft_parsing_3(v.tab, v.j, v.n, ptr);
 
 void	ft_parsing(int i, t_algo *a, char *av)
 {
