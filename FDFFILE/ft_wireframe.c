@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 18:13:00 by anaszanane        #+#    #+#             */
-/*   Updated: 2022/01/04 16:20:57 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/04 17:49:16 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,9 @@ void	ft_wireframe(int **tab, int ymax, int xmax, t_algo *a)
 	t_v		v;
 
 	a->c = xmax * ymax;
-	if (a->c > 100000)
+	if (a->c > 2000000)
+		a->c = 0.00001;
+	else if (a->c > 100000)
 		a->c = 1.2;
 	else if (a->c > 1000)
 		a->c = 4;
@@ -128,12 +130,11 @@ void	ft_wireframe(int **tab, int ymax, int xmax, t_algo *a)
 	ft_put_col(a, xmax, ymax);
 	ft_freee(a->file);
 	ft_trace(tab, ymax, xmax, a);
-	v.n = 0;
-	while (v.n < ymax)
+	v.n = -1;
+	while (++(v.n) < ymax)
 	{
 		free(tab[v.n]);
 		tab[v.n] = NULL;
-		v.n++;
 	}
 	free(tab);
 }

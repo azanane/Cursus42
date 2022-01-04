@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 11:14:32 by anaszanane        #+#    #+#             */
-/*   Updated: 2022/01/04 16:28:32 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/04 17:07:57 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_algo
 	double	col3;
 	void	*ptr;
 	void	*win;
+	void	*img;
 }	t_algo;
 
 int		main(int ac, char **av);

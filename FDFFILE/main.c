@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 11:47:50 by anaszanane        #+#    #+#             */
-/*   Updated: 2022/01/04 16:32:51 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/04 18:09:14 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,18 @@ void	ft_parsing(int i, t_algo *a, char *av)
 	ft_parsing_2(i, a);
 }
 
-int	ft_close(int keycode, t_algo *v)
+int	ft_event(int keycode, t_algo *a)
 {
 	if (keycode == 53)
 	{
-		mlx_destroy_window(v->ptr, v->win);
+		mlx_destroy_window(a->ptr, a->win);
 		exit(0);
 	}
+	// if (keycode == 27)
+	// {
+	// 	a->dx -= 10;
+	// 	a->dx1 -= 10;
+	// }
 	return (0);
 }
 
@@ -112,7 +117,7 @@ int	main(int ac, char **av)
 	}
 	close(fd);
 	ft_parsing(i, &a, av[1]);
-	mlx_hook(a.win, 2, 1L << 0, ft_close, &a);
+	mlx_hook(a.win, 2, 1L << 0, ft_event, &a);
 	mlx_loop(a.ptr);
 	return (0);
 }
