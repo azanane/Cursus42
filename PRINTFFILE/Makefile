@@ -6,11 +6,7 @@
 #    By: azanane <azanane@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/22 19:49:40 by anaszanane        #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2021/12/22 22:36:18 by anaszanane       ###   ########.fr        #
-=======
 #    Updated: 2021/12/23 09:23:39 by azanane          ###   ########.fr        #
->>>>>>> 0fe4981db4020f37bff9e4f103f67ffe6f4a09a4
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,12 +16,8 @@ GREEN=$'\x1b[32m
 BLUE=$'\x1b[34m
 
 SRCS		=	./ft_printf.c ./ft_putchar.c ./ft_putnbr_base.c \
-<<<<<<< HEAD
-				./ft_putnbr.c ./ft_putstr.c ./ft_putstr_hexa.c \
-=======
 				./ft_putnbr.c ./ft_putstr.c ./ft_putunbr.c ./ft_putunbr_base.c \
 				./ft_putadd.c \
->>>>>>> 0fe4981db4020f37bff9e4f103f67ffe6f4a09a4
 
 OBJS		=	${SRCS:.c=.o}
 

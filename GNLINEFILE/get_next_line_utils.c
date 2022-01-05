@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 15:37:03 by azanane           #+#    #+#             */
-/*   Updated: 2021/12/20 15:20:02 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/04 08:03:01 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	*ft_substr(char	*s, int start, size_t	len)
 	return (str);
 }
 
-char	*ft_cheatmeal(char	*s1, char	*s2)
+char	*ft_strjoin_2(char	*s1, char	*s2)
 {
 	s1 = malloc(sizeof(char) * 1);
 	if (!s1)
@@ -92,7 +92,7 @@ char	*ft_strjoin(char *s1, char *s2, int *rd)
 	val.j = ft_strlen(s1);
 	val.n = ft_strlen(s2);
 	if (!s1)
-		s1 = ft_cheatmeal(s1, s2);
+		s1 = ft_strjoin_2(s1, s2);
 	str = malloc(sizeof(char) * (val.n + val.j + 2));
 	if (str == 0)
 		return (NULL);

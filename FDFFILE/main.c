@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 11:47:50 by anaszanane        #+#    #+#             */
-/*   Updated: 2022/01/04 18:09:14 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/04 18:44:59 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,9 @@ int	ft_event(int keycode, t_algo *a)
 	}
 	// if (keycode == 27)
 	// {
-	// 	a->dx -= 10;
-	// 	a->dx1 -= 10;
+	// 	a->img = mlx_new_image(a->ptr, 1920, 1080);
+	// 	mlx_put_image_to_window(a->ptr, a->win, a->img, -10, 0);
+	// 	main(ac, av);
 	// }
 	return (0);
 }
