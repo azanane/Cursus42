@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 18:13:00 by anaszanane        #+#    #+#             */
-/*   Updated: 2022/01/04 17:49:16 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/05 09:19:22 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,16 @@ void	ft_put_col(t_algo *a, int xmax, int ymax)
 	t_v		v;
 
 	a->col = malloc(sizeof(int *) * (ymax));
+	if (!a->col)
+		return ;
 	v.x = -1;
 	v.j = -1;
 	while (a->file[++(v.j)] && ++v.x < ymax)
 	{
 		v.n = -1;
 		a->col[v.x] = malloc(sizeof(int) * (xmax));
+		if (!a->col[v.x])
+			return ;
 		v.d = -1;
 		while (a->file[v.j][++(v.n)] && ++v.d < xmax)
 		{

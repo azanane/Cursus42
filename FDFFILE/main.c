@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 11:47:50 by anaszanane        #+#    #+#             */
-/*   Updated: 2022/01/04 18:44:59 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/05 09:18:20 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	ft_parsing_2(int i, t_algo *a)
 	char	**line;
 
 	v.tab = malloc(sizeof(int *) * i);
+	if (!v.tab)
+		return ;
 	i = -1;
 	v.j = 0;
 	while (a->file[++i])
@@ -42,6 +44,8 @@ void	ft_parsing_2(int i, t_algo *a)
 		while (a->file[i][v.n])
 			v.n++;
 		v.tab[i] = malloc(sizeof(int) * v.n);
+		if (!v.tab[i])
+			return ;
 		v.n = -1;
 		while (line[++v.n])
 			v.tab[v.j][v.n] = ft_atoi(line[v.n]);
@@ -57,6 +61,8 @@ void	ft_parsing(int i, t_algo *a, char *av)
 
 	v.fd = open(av, O_RDONLY);
 	a->file = malloc(sizeof(char *) * (i + 1));
+	if (!a->file)
+		return ;
 	a->file[i] = 0;
 	i = 0;
 	a->s = get_next_line(v.fd);
@@ -66,6 +72,8 @@ void	ft_parsing(int i, t_algo *a, char *av)
 		while (a->s[v.n])
 			v.n++;
 		a->file[i] = malloc(sizeof(char) * (v.n + 1));
+		if (!a->file[i])
+			return ;
 		a->file[i][v.n] = 0;
 		v.n = -1;
 		while (a->s[++v.n])

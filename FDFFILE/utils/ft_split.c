@@ -6,20 +6,20 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 08:50:40 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/04 16:30:23 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/05 09:21:55 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-static int	ft_check_base(char str, char	*charset)
+int	ft_check_base(char str, char	*charset)
 {
 	if (str == *charset)
 		return (1);
 	return (0);
 }
 
-static char	*ft_str_up(char const *src, char *charset, int *i)
+char	*ft_str_up(char const *src, char *charset, int *i)
 {
 	char	*tab;
 	int		j;
@@ -45,7 +45,7 @@ static char	*ft_str_up(char const *src, char *charset, int *i)
 	return (tab);
 }
 
-static int	ft_count_words(char const *str, char *charset)
+int	ft_count_words(char const *str, char *charset)
 {
 	int	i;
 	int	ct;
@@ -65,7 +65,7 @@ static int	ft_count_words(char const *str, char *charset)
 	return (ct + 2);
 }
 
-static int	ft_pb_malloc(char	**tab)
+int	ft_pb_malloc(char	**tab)
 {
 	int	j;
 
