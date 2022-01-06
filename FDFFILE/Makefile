@@ -6,7 +6,7 @@
 #    By: azanane <azanane@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/03 08:31:26 by azanane           #+#    #+#              #
-#    Updated: 2022/01/04 16:29:50 by azanane          ###   ########.fr        #
+#    Updated: 2022/01/06 08:22:48 by azanane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ RED=$'\x1b[31m
 GREEN=$'\x1b[32m
 BLUE=$'\x1b[34m
 
-SRCS		=	./main.c ./ft_wireframe.c \
+SRCS		=	./main.c ./ft_wireframe.c ./put_col.c \
 
 OBJS		=	${SRCS:.c=.o}
 
@@ -31,13 +31,14 @@ NAME		=	libfdf
 
 RM			=	rm -f
 
-all:		${NAME}
+all:		${NAME} run
 
 %.o:		%.c ${INCLUDES}
 			@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 			@echo "${BLUE}[BUILD]${END} ${<:.c=.o}"
 
 ${NAME}:	${OBJS} ${INCLUDES}
+			make -C ./libmlx
 			@ar rcs ${NAME} ${OBJS}
 			@echo "${GREEN}[CREATE]${END} ${NAME}"
 
@@ -46,10 +47,11 @@ run:		${NAME}
 
 clean:
 			@${RM} ${OBJS}
+			make clean -C ./libmlx
 			@echo "${RED}[DELETE]${END} *.o"
 
 fclean:		clean
-			@${RM} ${NAME}
+			@${RM} ${NAME} fdf
 			@echo "${RED}[DELETE]${END} ${NAME}"
 
 re:			fclean all run

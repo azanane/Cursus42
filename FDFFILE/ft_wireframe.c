@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 18:13:00 by anaszanane        #+#    #+#             */
-/*   Updated: 2022/01/05 09:19:22 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/06 08:38:15 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,43 +81,8 @@ void	ft_trace(int **tab, int ymax, int xmax, t_algo *a)
 	free(a->col);
 }
 
-void	ft_put_col(t_algo *a, int xmax, int ymax)
-{
-	t_v		v;
-
-	a->col = malloc(sizeof(int *) * (ymax));
-	if (!a->col)
-		return ;
-	v.x = -1;
-	v.j = -1;
-	while (a->file[++(v.j)] && ++v.x < ymax)
-	{
-		v.n = -1;
-		a->col[v.x] = malloc(sizeof(int) * (xmax));
-		if (!a->col[v.x])
-			return ;
-		v.d = -1;
-		while (a->file[v.j][++(v.n)] && ++v.d < xmax)
-		{
-			while (a->file[v.j][v.n] && ft_isdigit(a->file[v.j][v.n]) == 0)
-				v.n++;
-			while (a->file[v.j][v.n] && ft_isdigit(a->file[v.j][v.n]) == 1)
-				v.n++;
-			if (a->file[v.j][v.n] == ',')
-			{
-				a->col[v.x][v.d] = ft_b(a->file[v.j] + v.n, "0123456789ABCDEF");
-				v.n += 8;
-			}
-			else
-				a->col[v.x][v.d] = 0xFFFFFFF;
-		}
-	}
-}
-
 void	ft_wireframe(int **tab, int ymax, int xmax, t_algo *a)
 {
-	t_v		v;
-
 	a->c = xmax * ymax;
 	if (a->c > 2000000)
 		a->c = 0.00001;
@@ -134,11 +99,5 @@ void	ft_wireframe(int **tab, int ymax, int xmax, t_algo *a)
 	ft_put_col(a, xmax, ymax);
 	ft_freee(a->file);
 	ft_trace(tab, ymax, xmax, a);
-	v.n = -1;
-	while (++(v.n) < ymax)
-	{
-		free(tab[v.n]);
-		tab[v.n] = NULL;
-	}
-	free(tab);
+	ft_free_int(tab, ymax);
 }

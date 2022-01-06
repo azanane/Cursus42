@@ -6,46 +6,31 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 11:47:50 by anaszanane        #+#    #+#             */
-/*   Updated: 2022/01/05 09:18:20 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/06 08:37:53 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-char	**ft_freee(char	**tab)
-{
-	int	j;
-
-	j = 0;
-	while (tab[j])
-	{
-		free(tab[j]);
-		tab[j] = NULL;
-		j++;
-	}
-	free(tab);
-	return (NULL);
-}
-
-void	ft_parsing_2(int i, t_algo *a)
+int	ft_parsing_3(int *i, t_algo *a)
 {
 	t_v		v;
 	char	**line;
 
-	v.tab = malloc(sizeof(int *) * i);
+	v.tab = malloc(sizeof(int *) * *i);
 	if (!v.tab)
-		return ;
-	i = -1;
+		return (0);
+	*i = -1;
 	v.j = 0;
-	while (a->file[++i])
+	while (a->file[++(*i)])
 	{
 		v.n = 0;
-		line = ft_split(a->file[i], ' ');
-		while (a->file[i][v.n])
+		line = ft_split(a->file[*i], ' ');
+		while (a->file[*i][v.n])
 			v.n++;
-		v.tab[i] = malloc(sizeof(int) * v.n);
-		if (!v.tab[i])
-			return ;
+		v.tab[*i] = malloc(sizeof(int) * v.n);
+		if (!v.tab[*i])
+			return (ft_free_int(v.tab, *i));
 		v.n = -1;
 		while (line[++v.n])
 			v.tab[v.j][v.n] = ft_atoi(line[v.n]);
@@ -53,6 +38,34 @@ void	ft_parsing_2(int i, t_algo *a)
 		v.j++;
 	}
 	ft_wireframe(v.tab, v.j, v.n, a);
+	return (0);
+}
+
+void	ft_parsing_2(t_algo *a, t_v v, int *i)
+{
+	a->s = get_next_line(v.fd);
+	while (a->s)
+	{
+		v.n = 0;
+		while (a->s[v.n])
+			v.n++;
+		a->file[*i] = malloc(sizeof(char) * (v.n + 1));
+		if (!a->file[*i])
+		{
+			ft_freee(a->file);
+			return ;
+		}
+		a->file[*i][v.n] = 0;
+		v.n = -1;
+		while (a->s[++v.n])
+			a->file[*i][v.n] = a->s[v.n];
+		free(a->s);
+		a->s = NULL;
+		a->s = get_next_line(v.fd);
+		*i += 1;
+	}
+	close(v.fd);
+	ft_parsing_3(i, a);
 }
 
 void	ft_parsing(int i, t_algo *a, char *av)
@@ -65,26 +78,7 @@ void	ft_parsing(int i, t_algo *a, char *av)
 		return ;
 	a->file[i] = 0;
 	i = 0;
-	a->s = get_next_line(v.fd);
-	while (a->s)
-	{
-		v.n = 0;
-		while (a->s[v.n])
-			v.n++;
-		a->file[i] = malloc(sizeof(char) * (v.n + 1));
-		if (!a->file[i])
-			return ;
-		a->file[i][v.n] = 0;
-		v.n = -1;
-		while (a->s[++v.n])
-			a->file[i][v.n] = a->s[v.n];
-		free(a->s);
-		a->s = NULL;
-		a->s = get_next_line(v.fd);
-		i++;
-	}
-	close(v.fd);
-	ft_parsing_2(i, a);
+	ft_parsing_2(a, v, &i);
 }
 
 int	ft_event(int keycode, t_algo *a)
@@ -94,12 +88,6 @@ int	ft_event(int keycode, t_algo *a)
 		mlx_destroy_window(a->ptr, a->win);
 		exit(0);
 	}
-	// if (keycode == 27)
-	// {
-	// 	a->img = mlx_new_image(a->ptr, 1920, 1080);
-	// 	mlx_put_image_to_window(a->ptr, a->win, a->img, -10, 0);
-	// 	main(ac, av);
-	// }
 	return (0);
 }
 

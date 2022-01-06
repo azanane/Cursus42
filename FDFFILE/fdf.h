@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 11:14:32 by anaszanane        #+#    #+#             */
-/*   Updated: 2022/01/04 17:07:57 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/06 08:37:25 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,7 @@ int		main(int ac, char **av);
 void	ft_parsing(int i, t_algo *a, char *av);
 void	ft_wireframe(int **tab, int ymax, int xmax, t_algo	*a);
 char	**ft_freee(char	**tab);
+void	ft_put_col(t_algo *a, int xmax, int ymax);
+int		ft_free_int(int **tab, int max);
 
 #endif
