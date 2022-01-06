@@ -6,21 +6,15 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 07:33:20 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/05 18:04:32 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/06 13:31:46 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swp.h"
 
-int	ft_kill_malloc_int(int **tab, int size)
+void	ft_parsing_4(t_v *v)
 {
-	int	i;
-
-	i = -1;
-	while (++i < size)
-		free(tab[i]);
-	free(tab);
-	return (0);
+	
 }
 
 void	ft_parsing_3(char **av, t_v *v)
@@ -47,6 +41,7 @@ void	ft_parsing_3(char **av, t_v *v)
 			}
 		}
 	}
+	ft_parsing_4(v);
 	// ft_radix(v);
 }
 
