@@ -6,7 +6,7 @@
 #    By: azanane <azanane@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/03 08:31:26 by azanane           #+#    #+#              #
-#    Updated: 2022/01/06 08:22:48 by azanane          ###   ########.fr        #
+#    Updated: 2022/01/07 11:20:59 by azanane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,17 @@ RED=$'\x1b[31m
 GREEN=$'\x1b[32m
 BLUE=$'\x1b[34m
 
-SRCS		=	./main.c ./ft_wireframe.c ./put_col.c \
+LST_SRCS		=	main.c ft_wireframe.c put_col.c \
+					get_next_line.c get_next_line_utils.c ft_atoi.c \
+					ft_atoi_base.c ft_isdigit.c ft_split.c ft_toupper.c \
+					
 
-OBJS		=	${SRCS:.c=.o}
+LST_OBJS		=	${LST_SRCS:.c=.o}
 
-INCLUDES	=	./fdf.h
+SRCS = $(addprefix sources/,$(LST_SRCS))
+OBJS = $(addprefix .objects/,$(LST_OBJS))
+
+INCLUDES	=	includes/fdf.h
 
 CC			= gcc
 
@@ -27,33 +33,31 @@ CFLAGS		= -Wall -Wextra -Werror
 
 LIBX	    = -Llibmlx -lmlx -framework OpenGL -framework AppKit
 
-NAME		=	libfdf
+NAME		=	fdf
 
 RM			=	rm -f
 
-all:		${NAME} run
+all:		${NAME}
 
-%.o:		%.c ${INCLUDES}
-			@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
-			@echo "${BLUE}[BUILD]${END} ${<:.c=.o}"
+.objects/%.o:		sources/%.c ${INCLUDES}
+			mkdir -p .objects
+			@${CC} ${CFLAGS} -I includes -I libmlx -c $< -o $@
+			@echo "${BLUE}[BUILD]${END} $@"
 
-${NAME}:	${OBJS} ${INCLUDES}
+${NAME}:	${OBJS} ${INCLUDES} Makefile
 			make -C ./libmlx
-			@ar rcs ${NAME} ${OBJS}
+			gcc ${LIBX} ${OBJS} -I includes -I libmlx -o $@
 			@echo "${GREEN}[CREATE]${END} ${NAME}"
-
-run:		${NAME}
-			gcc ${LIBX} ${OBJS} get_next_line/*.c utils/*.c -o fdf
 
 clean:
 			@${RM} ${OBJS}
-			make clean -C ./libmlx
+			# make clean -C ./libmlx
 			@echo "${RED}[DELETE]${END} *.o"
 
 fclean:		clean
 			@${RM} ${NAME} fdf
 			@echo "${RED}[DELETE]${END} ${NAME}"
 
-re:			fclean all run
+re:			fclean all
 
 .PHONY: 	all clean fclean re

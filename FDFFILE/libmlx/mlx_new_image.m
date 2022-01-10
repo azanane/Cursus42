@@ -62,7 +62,7 @@ mlx_img_ctx_t	*add_img_to_ctx(mlx_img_list_t *img, mlx_win_list_t *win)
 	       GL_RGBA8,                    /* internal format */
 	       img->width, img->height, 0,           /* width, height, border */
 	       GL_BGRA, GL_UNSIGNED_BYTE,   /* external format, type */
-	       img->buffer               /* pixels */
+	       img->buffer               /* pxls */
 	       );
 
   glGenBuffers(1, &(imgctx->vbuffer));

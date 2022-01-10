@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 11:47:50 by anaszanane        #+#    #+#             */
-/*   Updated: 2022/01/06 08:37:53 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/07 15:21:37 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,22 +95,23 @@ int	main(int ac, char **av)
 {
 	int		fd;
 	int		i;
-	char	*s;
 	t_algo	a;
 
 	if (ac != 2)
 		return (0);
 	a.ptr = mlx_init();
+	if (!a.ptr)
+		return (0);
 	fd = open(av[1], O_RDONLY);
-	s = get_next_line(fd);
+	a.s = get_next_line(fd);
 	i = 0;
-	while (s)
+	while (a.s)
 	{
-		if (s[0] != '\n')
+		if (a.s[0] != '\n')
 			i++;
-		ft_free(s);
-		s = NULL;
-		s = get_next_line(fd);
+		ft_free(a.s);
+		a.s = NULL;
+		a.s = get_next_line(fd);
 	}
 	close(fd);
 	ft_parsing(i, &a, av[1]);

@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 07:48:58 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/06 08:42:31 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/07 14:54:55 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int	ft_free_int(int **tab, int max)
 	return (0);
 }
 
-void	ft_put_col_2(t_v *v, t_algo *a, int xmax)
+void	ft_put_col_2(t_v *v, t_algo *a, int xm)
 {
-	while (a->file[v->j][++(v->n)] && ++v->d < xmax)
+	while (a->file[v->j][++(v->n)] && ++v->d < xm)
 	{
 		while (a->file[v->j][v->n] && ft_isdigit(a->file[v->j][v->n]) == 0)
 			v->n++;
@@ -58,22 +58,22 @@ void	ft_put_col_2(t_v *v, t_algo *a, int xmax)
 	}
 }
 
-void	ft_put_col(t_algo *a, int xmax, int ymax)
+void	ft_put_col(t_algo *a, int xm, int ym)
 {
 	t_v		v;
 
-	a->col = malloc(sizeof(int *) * (ymax));
+	a->col = malloc(sizeof(int *) * (ym));
 	if (!a->col)
 		return ;
 	v.x = -1;
 	v.j = -1;
-	while (a->file[++(v.j)] && ++v.x < ymax)
+	while (a->file[++(v.j)] && ++v.x < ym)
 	{
 		v.n = -1;
-		a->col[v.x] = malloc(sizeof(int) * (xmax));
+		a->col[v.x] = malloc(sizeof(int) * (xm));
 		if (!a->col[v.x])
 			return ;
 		v.d = -1;
-		ft_put_col_2(&v, a, xmax);
+		ft_put_col_2(&v, a, xm);
 	}
 }

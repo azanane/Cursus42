@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 11:14:32 by anaszanane        #+#    #+#             */
-/*   Updated: 2022/01/06 08:37:25 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/07 14:58:12 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 # define FDF_H
 
 # include <math.h>
-# include "libmlx/mlx.h"
+# include "mlx.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <unistd.h>
 # include <limits.h>
 # include <stdlib.h>
-# include "get_next_line/get_next_line.h"
-# include "utils/utils.h"
+# include "get_next_line.h"
+# include "utils.h"
 
 typedef struct s_v
 {
@@ -48,19 +48,20 @@ typedef struct s_algo
 	char	*s;
 	char	**file;
 	int		**col;
-	int		col1;
-	int		col2;
-	double	col3;
+	int		cl1;
+	int		cl2;
+	double	cl3;
 	void	*ptr;
 	void	*win;
 	void	*img;
+	void	*tmp;
 }	t_algo;
 
 int		main(int ac, char **av);
 void	ft_parsing(int i, t_algo *a, char *av);
-void	ft_wireframe(int **tab, int ymax, int xmax, t_algo	*a);
+void	ft_wireframe(int **tab, int ym, int xm, t_algo	*a);
 char	**ft_freee(char	**tab);
-void	ft_put_col(t_algo *a, int xmax, int ymax);
+void	ft_put_col(t_algo *a, int xm, int ym);
 int		ft_free_int(int **tab, int max);
 
 #endif

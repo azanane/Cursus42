@@ -6,12 +6,12 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 17:19:29 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/04 16:31:18 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/06 11:25:50 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-#include "../get_next_line/get_next_line.h"
+#include "get_next_line.h"
 
 int	ft_b(char *str, char *base)
 {
