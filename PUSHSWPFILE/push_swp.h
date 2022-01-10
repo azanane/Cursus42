@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 07:31:58 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/05 17:44:53 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/10 11:42:41 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ int		ft_parsing(char **av, t_v *v);
 int		ft_kill_malloc_int(int **tab, int size);
 void	ft_radix(t_v *v);
 void	ft_operation(t_v *v, char *op);
+int		ft_quote(int ac, char **av, t_v v);
 
 #endif

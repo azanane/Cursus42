@@ -1,18 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   radix.c                                            :+:      :+:    :+:   */
+/*   ft_quote.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 16:56:13 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/10 08:01:14 by azanane          ###   ########.fr       */
+/*   Created: 2022/01/10 08:18:17 by azanane           #+#    #+#             */
+/*   Updated: 2022/01/10 11:45:55 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swp.h"
 
-void	ft_radix(t_v *v)
+int	ft_quote(int ac, char **av, t_v v)
 {
-	ft_kill_malloc_int(v->tab, 2);
+	while (av[++(v.i)])
+	{
+		v.n = -1;
+		while (av[v.i][++(v.n)])
+		{
+			if (av[v.i][v.n] == ' ')
+			{
+				while (av[v.i][++(v.n)])
+				{
+					if (ft_isdigit(av[v.i][v.n]) == 1 && ac > 2)
+					{
+						write(2, "Error\n", 6);
+						return (1);
+					}
+				}
+			}
+		}
+	}
+	return (0);
 }

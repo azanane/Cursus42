@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: azanane <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: azanane <azanane@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/10 10:58:35 by azanane           #+#    #+#              #
-#    Updated: 2021/12/21 13:06:47 by azanane          ###   ########lyon.fr    #
+#    Updated: 2022/01/10 12:37:10 by azanane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRCS		=	./ft_atoi.c ./ft_calloc.c ./ft_isalpha.c ./ft_isdigit.c ./ft_itoa.c\
 				./ft_strlen.c ./ft_strncmp.c ./ft_strrchr.c ./ft_substr.c \
 				./ft_toupper.c ./ft_strdup.c ./ft_strmapi.c ./ft_striteri.c \
 				./ft_putendl_fd.c ./ft_putendl_fd.c ./ft_putstr_fd.c \
-				./ft_putnbr_fd.c ./ft_putchar_fd.c \
+				./ft_putnbr_fd.c ./ft_putchar_fd.c ./ft_atol.c \
 
 OBJS		=	${SRCS:.c=.o}
 

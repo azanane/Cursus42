@@ -6,16 +6,15 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 07:33:20 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/06 13:31:46 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/10 15:11:02 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swp.h"
 
-void	ft_parsing_4(t_v *v)
-{
-	
-}
+// void	ft_parsing_4(t_v *v)
+// {
+// }
 
 void	ft_parsing_3(char **av, t_v *v)
 {
@@ -27,13 +26,13 @@ void	ft_parsing_3(char **av, t_v *v)
 			if (ft_isdigit(av[v->i][v->n]) == 1)
 			{
 				v->y = -1;
-				v->tab[0][v->d] = ft_atoi(av[v->i] + v->n, &v->n);
+				v->tab[0][v->d] = ft_atol(v->tab, av[v->i] + v->n, &v->n);
 				while (++v->y < v->d)
 				{
 					if (v->tab[0][v->y] == v->tab[0][v->d])
 					{
 						ft_kill_malloc_int(v->tab, 2);
-						write(1, "Error\n", 6);
+						write(2, "Error\n", 6);
 						return ;
 					}
 				}
@@ -41,7 +40,7 @@ void	ft_parsing_3(char **av, t_v *v)
 			}
 		}
 	}
-	ft_parsing_4(v);
+	// ft_parsing_4(v);
 	// ft_radix(v);
 }
 
@@ -70,9 +69,12 @@ int	ft_parsing(char **av, t_v *v)
 		v->tmp = v->ct;
 		while (av[v->i][++(v->n)])
 		{
-			if (ft_isdigit(av[v->i][v->n]) == 0 && av[v->i][v->n] != ' ')
+			if ((ft_isdigit(av[v->i][v->n]) == 0 && av[v->i][v->n] != ' '
+				&& av[v->i][v->n] != '+' && av[v->i][v->n] != '-')
+				|| ((av[v->i][v->n] == '+' || av[v->i][v->n] == '-')
+				&& ft_isdigit(av[v->i][v->n + 1]) == 0))
 			{
-				write(1, "Error\n", 6);
+				write(2, "Error\n", 6);
 				return (0);
 			}
 			if (ft_isdigit(av[v->i][v->n]) == 1
@@ -81,7 +83,7 @@ int	ft_parsing(char **av, t_v *v)
 		}
 		if (v->tmp == v->ct)
 		{
-			write(1, "Error\n", 6);
+			write(2, "Error\n", 6);
 			return (0);
 		}
 	}
@@ -95,6 +97,9 @@ int	main(int ac, char **av)
 	t_v	v;
 
 	if (ac < 2)
+		return (0);
+	v.i = 0;
+	if (ft_quote(ac, av, v) == 1)
 		return (0);
 	v.i = 0;
 	v.ct = 0;
