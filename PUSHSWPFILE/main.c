@@ -3,18 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anaszanane <anaszanane@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 07:33:20 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/10 15:11:02 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/10 21:28:50 by anaszanane       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swp.h"
 
-// void	ft_parsing_4(t_v *v)
-// {
-// }
+void	ft_parsing_4(t_v *v)
+{
+	v->ct = 0;
+	v->i = 0;
+	while (++v->i <= v->d)
+	{
+		if (v->tab[0][v->i] < v->tab[0][v->i - 1])
+			v->ct++;
+	}
+	if (v->ct == 0)
+	{
+		printf("ok\n");
+		ft_kill_malloc_int(v->tab, 2);
+		exit (1);
+	}
+	ft_index(v);
+}
 
 void	ft_parsing_3(char **av, t_v *v)
 {
@@ -40,8 +54,7 @@ void	ft_parsing_3(char **av, t_v *v)
 			}
 		}
 	}
-	// ft_parsing_4(v);
-	// ft_radix(v);
+	ft_parsing_4(v);
 }
 
 void	ft_parsing_2(char **av, t_v *v)
@@ -72,7 +85,9 @@ int	ft_parsing(char **av, t_v *v)
 			if ((ft_isdigit(av[v->i][v->n]) == 0 && av[v->i][v->n] != ' '
 				&& av[v->i][v->n] != '+' && av[v->i][v->n] != '-')
 				|| ((av[v->i][v->n] == '+' || av[v->i][v->n] == '-')
-				&& ft_isdigit(av[v->i][v->n + 1]) == 0))
+				&& ft_isdigit(av[v->i][v->n + 1]) == 0)
+				|| ((av[v->i][v->n] == '+' || av[v->i][v->n] == '-')
+				&& (v->n != 0 && av[v->i][v->n - 1] != ' ')))
 			{
 				write(2, "Error\n", 6);
 				return (0);
