@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaszanane <anaszanane@student.42.fr>      +#+  +:+       +#+        */
+/*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:36:39 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/10 21:21:32 by anaszanane       ###   ########.fr       */
+/*   Updated: 2022/01/11 16:13:36 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+void	ft_err(int **tab)
+{
+	ft_kill_malloc_int(tab, 2);
+	ft_putstr_fd("Error\n", 2);
+	exit (1);
+}
 
 long long	ft_atol(int **tab, const char *str, int *n)
 {
@@ -21,8 +28,6 @@ long long	ft_atol(int **tab, const char *str, int *n)
 	i = 0;
 	ct = 1;
 	nb = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
@@ -39,10 +44,6 @@ long long	ft_atol(int **tab, const char *str, int *n)
 	*n -= 1;
 	nb = nb * ct;
 	if (nb > INT_MAX || nb < INT_MIN)
-	{
-		ft_kill_malloc_int(tab, 2);
-		ft_putstr_fd("Error\n", 2);
-		exit (1);
-	}
+		ft_err(tab);
 	return (nb);
 }

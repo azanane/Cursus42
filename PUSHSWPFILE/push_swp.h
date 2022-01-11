@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swp.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaszanane <anaszanane@student.42.fr>      +#+  +:+       +#+        */
+/*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 07:31:58 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/10 18:58:01 by anaszanane       ###   ########.fr       */
+/*   Updated: 2022/01/11 17:25:44 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,8 @@ typedef struct s_v
 	int	d;
 	int	y;
 	int	ct;
+	int	ct2;
 	int	tmp;
-	int	tmp2;
-	int	tmp3;
-	int	tmp4;
-	int	tmp5;
-	int	tmp6;
 	int	**tab;
 }	t_v;
 
@@ -41,5 +37,8 @@ void	ft_radix(t_v *v);
 void	ft_operation(t_v *v, char *op);
 int		ft_quote(int ac, char **av, t_v v);
 void	ft_index(t_v *v);
+void	ft_error(int **tab);
+int		ft_check_sort(t_v *v);
+void	ft_radix(t_v *v);
 
 #endif

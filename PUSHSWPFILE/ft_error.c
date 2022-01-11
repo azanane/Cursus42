@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_index.c                                         :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 17:50:46 by anaszanane        #+#    #+#             */
-/*   Updated: 2022/01/11 16:01:11 by azanane          ###   ########.fr       */
+/*   Created: 2022/01/11 16:14:02 by azanane           #+#    #+#             */
+/*   Updated: 2022/01/11 16:17:05 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swp.h"
 
-void	ft_index(t_v *v)
+void	ft_error(int **tab)
 {
-	v->i = -1;
-	while (++v->i < v->d)
-	{
-		v->n = -1;
-		v->ct = 0;
-		while (++v->n < v->d)
-		{
-			if (v->tab[0][v->i] > v->tab[0][v->n])
-				v->ct++;
-		}
-		v->tab[1][v->i] = v->ct;
-	}
-	v->i = -1;
-	while (++v->i <= v->d - 1)
-		v->tab[0][v->i] = v->tab[1][v->i];
+	if (tab != NULL)
+		ft_kill_malloc_int(tab, 2);
+	ft_putstr_fd("Error\n", 2);
+	exit (1);
 }

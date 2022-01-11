@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaszanane <anaszanane@student.42.fr>      +#+  +:+       +#+        */
+/*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 07:33:20 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/11 08:51:47 by anaszanane       ###   ########.fr       */
+/*   Updated: 2022/01/11 17:00:27 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_parsing_4(t_v *v)
 		exit (1);
 	}
 	ft_index(v);
+	ft_radix(v);
 }
 
 void	ft_parsing_3(char **av, t_v *v)
@@ -43,11 +44,7 @@ void	ft_parsing_3(char **av, t_v *v)
 				while (++v->y < v->d)
 				{
 					if (v->tab[0][v->y] == v->tab[0][v->d])
-					{
-						ft_kill_malloc_int(v->tab, 2);
-						write(2, "Error\n", 6);
-						return ;
-					}
+						ft_error(v->tab);
 				}
 				v->d++;
 			}
@@ -87,19 +84,13 @@ int	ft_parsing(char **av, t_v *v)
 				&& ft_isdigit(av[v->i][v->n + 1]) == 0)
 				|| ((av[v->i][v->n] == '+' || av[v->i][v->n] == '-')
 				&& (v->n != 0 && av[v->i][v->n - 1] != ' ')))
-			{
-				write(2, "Error\n", 6);
-				return (0);
-			}
+				ft_error(NULL);
 			if (ft_isdigit(av[v->i][v->n]) == 1
 				&& (av[v->i][v->n + 1] == ' ' || av[v->i][v->n + 1] == 0))
 				v->ct++;
 		}
 		if (v->tmp == v->ct)
-		{
-			write(2, "Error\n", 6);
-			return (0);
-		}
+			ft_error(NULL);
 	}
 	if (v->ct < 2)
 		return (0);

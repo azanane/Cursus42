@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_index.c                                         :+:      :+:    :+:   */
+/*   ft_check_sort.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 17:50:46 by anaszanane        #+#    #+#             */
-/*   Updated: 2022/01/11 16:01:11 by azanane          ###   ########.fr       */
+/*   Created: 2022/01/11 16:20:49 by azanane           #+#    #+#             */
+/*   Updated: 2022/01/11 16:25:09 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swp.h"
 
-void	ft_index(t_v *v)
+int	ft_check_sort(t_v *v)
 {
-	v->i = -1;
-	while (++v->i < v->d)
+	int	i;
+
+	v->ct = 0;
+	i = 0;
+	while (++i < v->d)
 	{
-		v->n = -1;
-		v->ct = 0;
-		while (++v->n < v->d)
-		{
-			if (v->tab[0][v->i] > v->tab[0][v->n])
-				v->ct++;
-		}
-		v->tab[1][v->i] = v->ct;
+		if (v->tab[0][i] < v->tab[0][i - 1])
+			v->ct++;
 	}
-	v->i = -1;
-	while (++v->i <= v->d - 1)
-		v->tab[0][v->i] = v->tab[1][v->i];
+	if (v->ct == 0)
+		return (1);
+	return (0);
 }
