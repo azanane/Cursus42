@@ -6,7 +6,7 @@
 /*   By: anaszanane <anaszanane@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 07:33:20 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/10 21:28:50 by anaszanane       ###   ########.fr       */
+/*   Updated: 2022/01/11 08:51:47 by anaszanane       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,13 @@ void	ft_parsing_4(t_v *v)
 {
 	v->ct = 0;
 	v->i = 0;
-	while (++v->i <= v->d)
+	while (++v->i < v->d)
 	{
 		if (v->tab[0][v->i] < v->tab[0][v->i - 1])
 			v->ct++;
 	}
 	if (v->ct == 0)
 	{
-		printf("ok\n");
 		ft_kill_malloc_int(v->tab, 2);
 		exit (1);
 	}

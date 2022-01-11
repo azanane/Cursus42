@@ -6,7 +6,7 @@
 /*   By: anaszanane <anaszanane@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 17:50:46 by anaszanane        #+#    #+#             */
-/*   Updated: 2022/01/10 21:33:05 by anaszanane       ###   ########.fr       */
+/*   Updated: 2022/01/11 09:29:21 by anaszanane       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_index(t_v *v)
 	v->i = -1;
 	v->tmp = v->tab[0][0];
 	v->tmp3 = v->tab[0][0];
-	while (++v->i <= v->d)
+	while (++v->i <= v->d - 1)
 	{
 		if (v->tmp > v->tab[0][v->i])
 		{
@@ -34,18 +34,19 @@ void	ft_index(t_v *v)
 		v->i = v->tmp2;
 		v->n = v->tmp2;
 		v->tmp6 = v->tmp3 + 1;
-		while (v->i != 0 && v->n != v->d - 1)
+		while (v->i != 0 && v->n != v->d)
 		{
-			if (v->i > 0)
+			// Tester ./a.out 23 2 3 1 211
+			if (v->i != 0)
 				v->i--;
-			if (v->n < v->d - 1)
+			if (v->n != v->d - 1)
 				v->n++;
-			if (v->tab[0][v->i] < v->tab[0][v->n] && v->tab[0][v->i] < v->tmp6 && v->tmp2 != 0)
+			if (v->tab[0][v->i] > v->tmp && v->tmp6 > v->tab[0][v->i])
 			{
 				v->tmp6 = v->tab[0][v->i];
 				v->tmp4 = v->i;
 			}
-			if (v->tab[0][v->n] < v->tab[0][v->i] && v->tab[0][v->n] < v->tmp6 && v->tmp2 != v->d - 1)
+			if (v->tab[0][v->n] < v->tab[0][v->i] && v->tab[0][v->n] > v->tmp && v->tmp6 > v->tab[0][v->n])
 			{
 				v->tmp6 = v->tab[0][v->n];
 				v->tmp4 = v->n;
@@ -54,12 +55,11 @@ void	ft_index(t_v *v)
 		v->tab[0][v->tmp4] = v->tmp5;
 		v->i = -1;
 		v->tmp3 = v->tab[0][0];
-		while (++v->i <= v->d)
+		while (++v->i <= v->d - 1)
 		{
 			if (v->tmp3 < v->tab[0][v->i])
-				v->tmp3 = v->tmp;
+				v->tmp3 = v->tab[0][v->i];
 		}
-		printf("ok\n");
 	}
 	int	i; 
 	
