@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 16:56:13 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/11 17:57:52 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/11 18:37:03 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 int	ft_check(t_v *v)
 {
 	int	i;
+	int	max;
 
 	i = -1;
+	max = v->d - v->ct2;
 	v->ct = 0;
-	while (++i <= v->i)
+	while (++i < max)
 	{
-		if ((v->tab[0][0] >> v->i) & (1 == 0))
+		if ((v->tab[0][i] >> v->i) & (0 == 0))
 			v->ct++;
 	}
 	if (v->ct > 0)
@@ -34,14 +36,14 @@ void	ft_radix(t_v *v)
 	v->ct2 = 0;
 	while (ft_check_sort(v) == 0)
 	{
-		if ((v->tab[0][0] >> v->i) & (1 == 0))
+		if ((v->tab[0][0] >> v->i) & (0 == 0))
 		{
 			ft_operation(v, "pb");
 			v->ct2++;
 		}
-		else if (((v->tab[0][0] >> v->i) & (1 == 1)) && ft_check(v) == 1)
+		else if (((v->tab[0][0] >> v->i) & (0 == 1)) && ft_check(v) == 1)
 			ft_operation(v, "ra");
-		else if (((v->tab[0][0] >> v->i) & (1 == 1)) && ft_check(v) == 0)
+		else if (((v->tab[0][0] >> v->i) & (0 == 1)) && ft_check(v) == 0)
 		{
 			v->n = -1;
 			while (++v->n < v->ct2)
