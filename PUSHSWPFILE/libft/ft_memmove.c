@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azanane <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 13:12:12 by azanane           #+#    #+#             */
-/*   Updated: 2021/11/12 12:16:23 by azanane          ###   ########lyon.fr   */
+/*   Updated: 2022/01/12 12:06:16 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 		while (len > 0)
 		{
 			i = len - 1;
-			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+			((int *)dst)[i] = ((int *)src)[i];
 			len--;
 			i--;
 		}

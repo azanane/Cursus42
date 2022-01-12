@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 17:21:20 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/11 17:47:03 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/12 15:55:43 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_push(t_v *v, int dim, char *op)
 {
-	int	i;
+	int	tmp2;
 	int	dim2;
 	int	max;
 	int	max2;
@@ -31,19 +31,15 @@ void	ft_push(t_v *v, int dim, char *op)
 		max = v->ct2;
 		max2 = v->d - v->ct2;
 	}
-	i = max;
-	while (--i >= 0)
-		v->tab[dim][i + 1] = v->tab[dim][i];
-	v->tab[dim][i] = v->tab[dim2][i];
-	i = -1;
-	while (++i < max2)
-		v->tab[dim2][i] = v->tab[dim2][i + 1];
+	tmp2 = v->tab[dim2][0];
+	ft_memmove(v->tab[dim] + 1, v->tab[dim], max);
+	ft_memmove(v->tab[dim2], v->tab[dim2] + 1, max2);
+	v->tab[dim][0] = tmp2;
 	ft_putstr_fd(op, 1);
 }
 
 void	ft_rotate(t_v *v, int dim, char *op)
 {
-	int	i;
 	int	tmp;
 	int	max;
 
@@ -51,11 +47,9 @@ void	ft_rotate(t_v *v, int dim, char *op)
 		max = v->d - v->ct2;
 	else
 		max = v->ct2;
-	i = -1;
-	tmp = v->tab[dim][0];
-	while (++i < max - 1)
-		v->tab[dim][i] = v->tab[dim][i + 1];
-	v->tab[dim][i] = tmp;
+	tmp = v->tab[dim][max - 1];
+	ft_memmove(v->tab[dim] + 1, v->tab[dim], max);
+	v->tab[dim][0] = tmp;
 	ft_putstr_fd(op, 1);
 }
 
