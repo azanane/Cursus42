@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 16:56:13 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/12 15:59:37 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/12 16:23:06 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,13 @@ int	ft_check(t_v *v)
 
 void	ft_radix(t_v *v)
 {
-	v->i = 0;
+	v->i = 1;
 	v->ct2 = 0;
-	while (ft_check_sort(v) == 0)
+	int r = -1;
+	while (++r < v->d - v->ct2)
+		printf("%d ", v->tab[0][r]);
+	printf("\n");
+	while (/*ft_check_sort(v) == 0*/v->i <= 5)
 	{
 		if ((v->tab[0][0] >> v->i & 1) == 0 && v->d - v->ct2 > 0)
 		{
