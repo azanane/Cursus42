@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   radix.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anaszanane <anaszanane@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 16:56:13 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/12 16:23:06 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/12 19:20:44 by anaszanane       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,20 @@ void	ft_radix(t_v *v)
 {
 	v->i = 1;
 	v->ct2 = 0;
-	int r = -1;
-	while (++r < v->d - v->ct2)
-		printf("%d ", v->tab[0][r]);
-	printf("\n");
-	while (/*ft_check_sort(v) == 0*/v->i <= 5)
+	while (ft_check_sort(v) == 0)
 	{
-		if ((v->tab[0][0] >> v->i & 1) == 0 && v->d - v->ct2 > 0)
+		v->n = -1;
+		while (++v->n < v->d)
 		{
-			ft_operation(v, "pb");
-			v->ct2++;
+			if ((v->tab[0][0] >> v->i & 1) == 0 && v->d - v->ct2 > 0)
+			{
+				ft_operation(v, "pb");
+				v->ct2++;
+			}
+			else if (((v->tab[0][0] >> v->i & 1) == 1) && ft_check(v) == 1)
+				ft_operation(v, "ra");
 		}
-		else if (((v->tab[0][0] >> v->i & 1) == 1) && ft_check(v) == 1)
-			ft_operation(v, "ra");
-		else if (v->d - v->ct2 == 0 || (((v->tab[0][0] >> v->i & 1) == 1)
+		if (v->d - v->ct2 == 0 || (((v->tab[0][0] >> v->i & 1) == 1)
 			&& ft_check(v) == 0 && v->ct2 > 0))
 		{
 			v->n = -1;
@@ -57,13 +57,13 @@ void	ft_radix(t_v *v)
 				ft_operation(v, "pa");
 				v->ct2--;
 			}
-			v->i++;
 			v->ct2 = 0;
 		}
-		int r = -1;
-		while (++r < v->d - v->ct2)
-			printf("%d ", v->tab[0][r]);
-		printf("\n");
+		v->i++;
 	}
+	int r = -1;
+	while (++r < v->d - v->ct2)
+		printf("%d ", v->tab[0][r]);
+	printf("\n");
 	ft_kill_malloc_int(v->tab, 2);
 }

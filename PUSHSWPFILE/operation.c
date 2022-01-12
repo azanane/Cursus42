@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anaszanane <anaszanane@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 17:21:20 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/12 15:55:43 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/12 18:20:41 by anaszanane       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	ft_push(t_v *v, int dim, char *op)
 	ft_memmove(v->tab[dim2], v->tab[dim2] + 1, max2);
 	v->tab[dim][0] = tmp2;
 	ft_putstr_fd(op, 1);
+	(void)op;
 }
 
 void	ft_rotate(t_v *v, int dim, char *op)
@@ -51,6 +52,7 @@ void	ft_rotate(t_v *v, int dim, char *op)
 	ft_memmove(v->tab[dim] + 1, v->tab[dim], max);
 	v->tab[dim][0] = tmp;
 	ft_putstr_fd(op, 1);
+	(void)op;
 }
 
 void	ft_swp(t_v *v, int dim, char *op)
