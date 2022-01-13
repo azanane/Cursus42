@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 07:31:58 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/12 14:51:20 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/13 17:10:27 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_v
 	int	y;
 	int	ct;
 	int	ct2;
+	int	ct3;
 	int	tmp;
 	int	**tab;
 }	t_v;

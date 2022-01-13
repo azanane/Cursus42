@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 07:33:20 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/12 14:51:25 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/13 15:05:07 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_parsing_3(char **av, t_v *v)
 		v->n = -1;
 		while (av[v->i][++(v->n)])
 		{
-			if (ft_isdigit(av[v->i][v->n]) == 1)
+			if (ft_isdigit(av[v->i][v->n]) == 1 || av[v->i][v->n] == '-')
 			{
 				v->y = -1;
 				v->tab[0][v->d] = ft_atol(v->tab, av[v->i] + v->n, &v->n);
