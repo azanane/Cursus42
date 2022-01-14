@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_sort.c                                    :+:      :+:    :+:   */
+/*   ft_kill_malloc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/11 16:20:49 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/13 18:36:33 by azanane          ###   ########.fr       */
+/*   Created: 2022/01/06 09:37:09 by azanane           #+#    #+#             */
+/*   Updated: 2022/01/14 14:36:37 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swp.h"
+#include "../includes/push_swp.h"
 
-int	ft_check_sort(t_v *v)
+int	ft_kill_malloc_int(int **tab, int size)
 {
 	int	i;
 
-	v->ct = 0;
-	i = 0;
-	if (v->ct2 == 0)
-	{	
-		while (++i < v->d)
-		{
-			if (v->tab[0][i] < v->tab[0][i - 1])
-				v->ct++;
-		}
-		if (v->ct == 0)
-			return (1);
-	}
+	i = -1;
+	while (++i < size)
+		free(tab[i]);
+	free(tab);
 	return (0);
 }
