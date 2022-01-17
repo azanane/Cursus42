@@ -6,11 +6,11 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 07:33:20 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/13 15:05:07 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/14 15:56:10 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swp.h"
+#include "../includes/push_swp.h"
 
 void	ft_parsing_4(t_v *v)
 {
@@ -27,7 +27,11 @@ void	ft_parsing_4(t_v *v)
 		exit (1);
 	}
 	ft_index(v);
-	ft_radix(v);
+	if (v->d < 6)
+		ft_sort(v);
+	else if (v->d >= 6)
+		ft_radix(v);
+	ft_kill_malloc_int(v->tab, 2);
 }
 
 void	ft_parsing_3(char **av, t_v *v)
@@ -101,7 +105,7 @@ int	main(int ac, char **av)
 {
 	t_v	v;
 
-	if (ac < 2)
+	if (ac <= 1)
 		return (0);
 	v.i = 0;
 	if (ft_quote(ac, av, v) == 1)

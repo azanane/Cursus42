@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_quote.c                                         :+:      :+:    :+:   */
+/*   ft_check_sort.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 08:18:17 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/10 11:45:55 by azanane          ###   ########.fr       */
+/*   Created: 2022/01/11 16:20:49 by azanane           #+#    #+#             */
+/*   Updated: 2022/01/14 15:24:51 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swp.h"
+#include "../includes/push_swp.h"
 
-int	ft_quote(int ac, char **av, t_v v)
+int	ft_check_sort(t_v *v)
 {
-	while (av[++(v.i)])
+	int	i;
+
+	v->ct = 0;
+	i = 0;
+	if (v->ct2 == 0)
 	{
-		v.n = -1;
-		while (av[v.i][++(v.n)])
+		while (++i < v->d)
 		{
-			if (av[v.i][v.n] == ' ')
-			{
-				while (av[v.i][++(v.n)])
-				{
-					if (ft_isdigit(av[v.i][v.n]) == 1 && ac > 2)
-					{
-						write(2, "Error\n", 6);
-						return (1);
-					}
-				}
-			}
+			if (v->tab[0][i] < v->tab[0][i - 1])
+				v->ct++;
 		}
+		if (v->ct == 0)
+			return (1);
 	}
 	return (0);
 }

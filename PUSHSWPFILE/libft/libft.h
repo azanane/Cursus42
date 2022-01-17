@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaszanane <anaszanane@student.42.fr>      +#+  +:+       +#+        */
+/*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 13:40:34 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/10 21:21:49 by anaszanane       ###   ########.fr       */
+/*   Updated: 2022/01/14 14:37:41 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <limits.h>
-# include "../push_swp.h"
+# include "../includes/push_swp.h"
 
 int			ft_atoi(const char	*str, int *n);
 long long	ft_atol(int **tab, const char	*str, int *n);

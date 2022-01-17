@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   operation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaszanane <anaszanane@student.42.fr>      +#+  +:+       +#+        */
+/*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 17:21:20 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/12 18:20:41 by anaszanane       ###   ########.fr       */
+/*   Updated: 2022/01/14 14:36:37 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swp.h"
+#include "../includes/push_swp.h"
 
 void	ft_push(t_v *v, int dim, char *op)
 {
@@ -36,10 +36,24 @@ void	ft_push(t_v *v, int dim, char *op)
 	ft_memmove(v->tab[dim2], v->tab[dim2] + 1, max2);
 	v->tab[dim][0] = tmp2;
 	ft_putstr_fd(op, 1);
-	(void)op;
 }
 
 void	ft_rotate(t_v *v, int dim, char *op)
+{
+	int	tmp;
+	int	max;
+
+	if (dim == 0)
+		max = v->d - v->ct2;
+	else
+		max = v->ct2;
+	tmp = v->tab[dim][0];
+	ft_memmove(v->tab[dim], v->tab[dim] + 1, max);
+	v->tab[dim][max - 1] = tmp;
+	ft_putstr_fd(op, 1);
+}
+
+void	ft_rotate_rotate(t_v *v, int dim, char *op)
 {
 	int	tmp;
 	int	max;
@@ -52,15 +66,24 @@ void	ft_rotate(t_v *v, int dim, char *op)
 	ft_memmove(v->tab[dim] + 1, v->tab[dim], max);
 	v->tab[dim][0] = tmp;
 	ft_putstr_fd(op, 1);
-	(void)op;
 }
 
 void	ft_swp(t_v *v, int dim, char *op)
 {
-	v->tmp = v->tab[dim][1];
-	v->tab[dim][1] = v->tab[dim][0];
-	v->tab[dim][0] = v->tmp;
-	ft_putstr_fd(op, 1);
+	int	max;
+	int	tmp;
+
+	if (dim == 0)
+		max = v->d - v->ct2;
+	else
+		max = v->ct2;
+	if (max > 1)
+	{
+		tmp = v->tab[dim][1];
+		v->tab[dim][1] = v->tab[dim][0];
+		v->tab[dim][0] = tmp;
+		ft_putstr_fd(op, 1);
+	}
 }
 
 void	ft_operation(t_v *v, char *op)
@@ -76,6 +99,8 @@ void	ft_operation(t_v *v, char *op)
 	}
 	else if (ft_strncmp(op, "ra", 2) == 0)
 		ft_rotate(v, 0, "ra\n");
+	else if (ft_strncmp(op, "rra", 2) == 0)
+		ft_rotate_rotate(v, 0, "rra\n");
 	else if (ft_strncmp(op, "pa", 2) == 0)
 		ft_push(v, 0, "pa\n");
 	else if (ft_strncmp(op, "pb", 2) == 0)

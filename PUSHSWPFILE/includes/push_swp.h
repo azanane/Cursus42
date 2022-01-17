@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 07:31:58 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/13 17:10:27 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/14 15:40:14 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,15 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include "libft/libft.h"
+# include "../libft/libft.h"
+
+typedef struct s_conv
+{
+	int	nb;
+	int	n2;
+	int	ctn;
+	int	ct;
+}	t_conv;
 
 typedef struct s_v
 {
@@ -41,5 +49,6 @@ void	ft_index(t_v *v);
 void	ft_error(int **tab);
 int		ft_check_sort(t_v *v);
 void	ft_radix(t_v *v);
+void	ft_sort(t_v *v);
 
 #endif
