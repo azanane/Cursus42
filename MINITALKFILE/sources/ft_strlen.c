@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.h                                           :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/15 15:24:00 by anaszanane        #+#    #+#             */
-/*   Updated: 2022/01/19 14:00:45 by azanane          ###   ########.fr       */
+/*   Created: 2022/01/19 08:37:40 by azanane           #+#    #+#             */
+/*   Updated: 2022/01/19 08:38:58 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERVER_H
-# define SERVER_H
+#include "../includes/utils.h"
 
-# include <unistd.h>
-# include <signal.h>
-# include <stdlib.h>
-# include "utils.h"
-# include "ft_printf.h"
-
-typedef struct s_server
+int	ft_strlen(char	*str)
 {
-	int	pid;
-}	t_server;
+	int	i;
 
-int	main(void);
-
-#endif
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+		i++;
+	return (i);
+}

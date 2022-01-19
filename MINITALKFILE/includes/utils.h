@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.h                                           :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/15 15:24:00 by anaszanane        #+#    #+#             */
-/*   Updated: 2022/01/19 14:00:45 by azanane          ###   ########.fr       */
+/*   Created: 2022/01/17 10:23:42 by azanane           #+#    #+#             */
+/*   Updated: 2022/01/19 09:38:19 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERVER_H
-# define SERVER_H
+#ifndef UTILS_H
+# define UTILS_H
 
 # include <unistd.h>
 # include <signal.h>
 # include <stdlib.h>
-# include "utils.h"
-# include "ft_printf.h"
 
-typedef struct s_server
+typedef struct s_val
 {
-	int	pid;
-}	t_server;
+	int	i;
+	int	j;
+	int	n;
+	int	x;
+}	t_val;
 
-int	main(void);
+int		ft_atoi(const char	*str);
+char	*ft_strjoin(char *s1, char *s2);
+int		ft_strlen(char *str);
+void	ft_putstr_fd(char	*s, int fd);
 
 #endif

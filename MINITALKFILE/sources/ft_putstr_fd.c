@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.h                                           :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/15 15:24:00 by anaszanane        #+#    #+#             */
-/*   Updated: 2022/01/19 14:00:45 by azanane          ###   ########.fr       */
+/*   Created: 2021/11/05 17:59:56 by azanane           #+#    #+#             */
+/*   Updated: 2022/01/19 09:46:11 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERVER_H
-# define SERVER_H
-
-# include <unistd.h>
-# include <signal.h>
-# include <stdlib.h>
-# include "utils.h"
-# include "ft_printf.h"
-
-typedef struct s_server
+#include "../includes/utils.h"
+#include <stdio.h>
+void	ft_putstr_fd(char	*s, int fd)
 {
-	int	pid;
-}	t_server;
+	int	i;
 
-int	main(void);
-
-#endif
+	dprintf(1, "%s\n", s);
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i])
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
+}

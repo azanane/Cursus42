@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaszanane <anaszanane@student.42.fr>      +#+  +:+       +#+        */
+/*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 16:08:50 by anaszanane        #+#    #+#             */
-/*   Updated: 2022/01/16 16:43:40 by anaszanane       ###   ########.fr       */
+/*   Updated: 2022/01/19 17:06:46 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,11 @@ int	main(void)
 
 	s.pid = getpid();
 	ft_printf("%d\n", s.pid);
+	while (1)
+	{
+		
+		
+		pause();
+	}
 	return (0);
 }
