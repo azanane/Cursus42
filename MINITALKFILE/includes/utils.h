@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 10:23:42 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/19 09:38:19 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/20 09:59:23 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ typedef struct s_val
 int		ft_atoi(const char	*str);
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_strlen(char *str);
-void	ft_putstr_fd(char	*s, int fd);
+void	ft_putchar_fd(char c, int fd);
 
 #endif

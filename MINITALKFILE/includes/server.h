@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:24:00 by anaszanane        #+#    #+#             */
-/*   Updated: 2022/01/19 14:00:45 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/20 09:04:48 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <signal.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include "utils.h"
 # include "ft_printf.h"
 
