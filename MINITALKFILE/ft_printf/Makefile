@@ -21,7 +21,7 @@ SRCS		=	./ft_printf.c ./ft_putchar.c ./ft_putnbr_base.c \
 
 OBJS		=	${SRCS:.c=.o}
 
-INCLUDES	=	./ft_printf.h
+INCLUDES	=	ft_printf.h
 
 CC			= gcc
 

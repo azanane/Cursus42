@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include "utils.h"
-# include "ft_printf.h"
+# include "../ft_printf/ft_printf.h"
 
 typedef struct s_server
 {

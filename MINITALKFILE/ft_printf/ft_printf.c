@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
 void	ft_conv_sorting2(const char	*str, int	*i, va_list	arg, int	*ct2)
 {
