@@ -15,9 +15,9 @@ RED=$'\x1b[31m
 GREEN=$'\x1b[32m
 BLUE=$'\x1b[34m
 
-CLIENT		= ./client
+CLIENT		= client
 
-SERVER		= ./server
+SERVER		= server
 
 LST_SRCS1	=	server.c ft_putchar_fd.c ft_strlen.c \
 
@@ -28,7 +28,7 @@ LST_OBJS1	=	${LST_SRCS1:.c=.o}
 LST_OBJS2	=	${LST_SRCS2:.c=.o}
 
 SERV  = $(addprefix .objects/,$(LST_OBJS1))
-CLI   = $(addprefix .objects/,$(LST))
+CLI   = $(addprefix .objects/,$(LST_OBJS2))
 
 INCLUDES	=	includes/server.h includes/client.h includes/utils.h
 
@@ -42,15 +42,15 @@ RM			=	rm -f
 
 PRT			= ft_printf/ft_printf.h
 
-all:	 prf ${SERVER} ${CLIENT}
+all:	prf ${SERVER} ${CLIENT} 
 
 ${SERVER}:	${SERV} ${INCLUDES} ${PRNT} Makefile
-			gcc ${SERV} -fsanitize=address ${PRT} -I includes -o $@
-			@echo "${GREEN}[CREATE]${END} ${SERVER}"
+			${CC} ${SERV} -fsanitize=address ${PRT} -I includes -o $@
+			echo "${GREEN}[CREATE]${END} ${SERVER}"
 			@echo "${GREEN}[CREATE]${END} ${CLIENT}"
 
 ${CLIENT}:	${CLI} ${INCLUDES}
-            gcc ${CLI} -fsanitize=address ${PRT} -I includes -o $@ 
+	        @${CC} ${CLI} -fsanitize=address -I includes -o $@ 
 
 prf:
 	make -C ./ft_printf
@@ -67,7 +67,8 @@ clean:
 
 fclean:		clean
 			@${RM} ${SERVER} ${CLIENT}
-			@echo "${RED}[DELETE]${END} ${NAME1} and ${NAME2}"
+			@echo "${RED}[DELETE]${END} ${SERVER}"
+			@echo "${RED}[DELETE]${END} ${CLIENT}"
 
 re:			fclean all
 
