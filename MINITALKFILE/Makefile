@@ -6,7 +6,7 @@
 #    By: azanane <azanane@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/14 14:27:59 by azanane           #+#    #+#              #
-#    Updated: 2022/01/14 18:04:57 by azanane          ###   ########.fr        #
+#    Updated: 2022/01/24 15:16:39 by azanane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,12 +40,12 @@ CFLAGS		= -Wall -Wextra -Werror
 
 RM			=	rm -f
 
-PRT			= ft_printf/ft_printf.h
+PRT			= ft_printf/libftprintf.a
 
 all:	prf ${SERVER} ${CLIENT} 
 
 ${SERVER}:	${SERV} ${INCLUDES} ${PRNT} Makefile
-			${CC} ${SERV} -fsanitize=address ${PRT} -I includes -o $@
+			${CC} -fsanitize=address -I includes ${PRT} ${SERV} -o $@
 			echo "${GREEN}[CREATE]${END} ${SERVER}"
 			@echo "${GREEN}[CREATE]${END} ${CLIENT}"
 
