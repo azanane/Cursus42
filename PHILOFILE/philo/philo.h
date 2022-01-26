@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:52:38 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/24 18:35:05 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/26 18:19:49 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,17 @@ typedef struct s_val
 	int	time;
 	int	time2;
 	int	*tab;
+	int	*frk;
 }	t_val;
 
+typedef struct	s_philo
+{
+
+}	t_philo;
+
 int		main(int ac, char **av);
+void	ft_thread(t_val *v);
+int		pass_fork(t_val *v, int i, int nb);
 int		ft_atoi(const char	*str);
 void	ft_pstr(char	*s, int fd);
 void	ft_putchar_fd(char c, int fd);

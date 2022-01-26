@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:52:09 by azanane           #+#    #+#             */
-/*   Updated: 2022/01/24 18:51:09 by azanane          ###   ########.fr       */
+/*   Updated: 2022/01/26 17:37:52 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	ft_error_arg(int i, char *err)
 void	ft_getval(char **av, t_val *v)
 {
 	v->tab = malloc(sizeof(int) * v->ct);
+	if (!v->tab)
+		return ;
 	v->i = 0;
 	while (av[++v->i])
 	{
@@ -84,6 +86,11 @@ int	main(int ac, char **av)
 	ft_check_args(av);
 	ft_getval(av, &v);
 	ac++;
-	v.i = 0;
+	v.i = -1;
+	v.frk = malloc(sizeof(int) * v.tab[0]);
+	while (++v.i < v.tab[0])
+		v.frk[v.i] = 0;
+	v.i = -1;
+	// ft_thread(&v);
 	return (0);
 }
