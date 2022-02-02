@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:52:09 by azanane           #+#    #+#             */
-/*   Updated: 2022/02/01 18:32:39 by azanane          ###   ########.fr       */
+/*   Updated: 2022/02/02 08:44:00 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,40 +53,40 @@ void	ft_getval(char **av, t_val *v)
 	}
 }
 
-void	ft_check_args(char **av)
+void	ft_check_args(char **av, t_val *v)
 {
-	t_val	v;
-
-	v.i = 0;
-	v.ct = 0;
-	while (av[++v.i])
+	v->i = 0;
+	v->ct = 0;
+	while (av[++v->i])
 	{
-		v.n = -1;
-		while (av[v.i][++v.n])
+		v->n = -1;
+		while (av[v->i][++v->n])
 		{
-			if (ft_isdigit(av[v.i][v.n]) == 1
-				&& (v.n == 0 || av[v.i][v.n - 1] == ' '
-					|| av[v.i][v.n - 1] == '+'))
-				v.ct++;
-			if (av[v.i][v.n] == '+' && v.n > 0 && av[v.i][v.n - 1] != ' ')
-				ft_error_arg(v.ct, "");
-			if (ft_isdigit(av[v.i][v.n]) == 0 && av[v.i][v.n] != ' '
-				&& av[v.i][v.n] != '+')
-				ft_error_arg(v.ct, "");
+			if (ft_isdigit(av[v->i][v->n]) == 1
+				&& (v->n == 0 || av[v->i][v->n - 1] == ' '
+					|| av[v->i][v->n - 1] == '+'))
+				v->ct++;
+			if (av[v->i][v->n] == '+' && v->n > 0 && av[v->i][v->n - 1] != ' ')
+				ft_error_arg(v->ct, "");
+			if (ft_isdigit(av[v->i][v->n]) == 0 && av[v->i][v->n] != ' '
+				&& av[v->i][v->n] != '+')
+				ft_error_arg(v->ct, "");
 		}
 	}
-	if (v.ct < 4 || v.ct > 5)
-		ft_error_arg(v.i, "n");
+	if (v->ct < 4 || v->ct > 5)
+		ft_error_arg(v->i, "n");
 }
 
 int	main(int ac, char **av)
 {
 	t_val			v;
+	static int		len;
 
-	ft_check_args(av);
+	ft_check_args(av, &v);
 	ft_getval(av, &v);
 	ac++;
 	v.i = -1;
-	ft_thread(&v);
+	len = v.tab[0];
+	ft_thread(&v, len);
 	return (0);
 }

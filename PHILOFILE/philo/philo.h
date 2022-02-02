@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:52:38 by azanane           #+#    #+#             */
-/*   Updated: 2022/02/01 19:47:58 by azanane          ###   ########.fr       */
+/*   Updated: 2022/02/02 11:39:06 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,30 +20,42 @@
 # include <sys/time.h>
 # include <pthread.h>
 
+typedef struct s_rout
+{
+	struct timeval	current_time2;
+	int				nb_philo;
+	int				eat;
+	int				die;
+	int				sleep;
+	int				nb_meals;
+	int				who;
+}	t_rout;
+
 typedef struct s_philo
 {
-	int			toeat;
-	int			todie;
-	int			tosleep;
-	int			nph;
-	struct val	*val;
-	pthread_t	philoid;
-	int			time;
-	int			time2;
-	int			*frk;
+	int				p;
+	int				n;
+	int				*tb;
+	int				*frk;
+	int				nph;
+	pthread_t		pid;
+	pthread_mutex_t	mutex_1;
+	struct timeval	current_time;
 }	t_philo;
 
 typedef struct s_val
 {
-	int	i;
-	int	n;
-	int	ct;
-	int	*tab;
+	int				i;
+	int				n;
+	int				ct;
+	int				*tab;
+	pthread_mutex_t	mutex;
 }	t_val;
 
 int		main(int ac, char **av);
-int		ft_thread(t_val *v);
-int		pass_fork(t_val *v, t_philo *p, int i, int nb);
+int		ft_thread(t_val *v, int len);
+void	*routine_initialize(void *arg);
+int		pass_fork(t_rout *r, int *frk, int i, int nb);
 int		ft_atoi(const char	*str);
 void	ft_pstr(char	*s, int fd);
 void	ft_putchar_fd(char c, int fd);
