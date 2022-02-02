@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 08:05:40 by azanane           #+#    #+#             */
-/*   Updated: 2022/02/02 11:58:59 by azanane          ###   ########.fr       */
+/*   Updated: 2022/02/02 19:42:40 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,33 @@ void	want_fork(void *arg, t_rout *r)
 	int	i;
 
 	pthread_mutex_lock(&(*(t_philo *)arg).mutex_1);
-	pass_fork(r, (*(t_philo *)arg).frk, r.who, (*(t_philo *)arg).frk[r.who]);
+	// p_fork(r, (*(t_philo *)arg).frk, r->who, (*(t_philo *)arg).frk[r->who]);
 	pthread_mutex_unlock(&(*(t_philo *)arg).mutex_1);
-	if ((*(t_philo *)arg).frk[r.who] == 2)
+	if ((*(t_philo *)arg).frk[r->who] == 2)
 	{
-		write(1, "")
-		ft_ptstr("")
+		gettimeofday(&r->current_time2, NULL);
+		ft_putnbr_fd((r->current_time2.tv_sec - r->current_time.tv_sec), 1);
+		ft_pstr(" ", 1);
+		ft_putnbr_fd(r->who, 1);
+		ft_pstr(" has taken a fork.\n", 1);
 		i = -1;
-		while (++i < r.eat)
+		while (++i < r->eat)
+			usleep(1);
+		p_fork(r, (*(t_philo *)arg).frk, r->who, (*(t_philo *)arg).frk[r->who]);
+		r->ct_meals++;
 	}
 }
 
 void	routine_start(void *arg, t_rout *r)
 {
 	want_fork(arg, r);
+	// or_think(arg, r);
+	want_fork(arg, r);
+	// or_sleep(arg, r);
+	want_fork(arg, r);
 }
 
-void	*routine_initialize(void *arg)
+void	*routine(void *arg)
 {
 	t_rout	r;
 
@@ -46,11 +56,21 @@ void	*routine_initialize(void *arg)
 	r.sleep = (*(t_philo *)arg).tb[3];
 	if (((*(t_philo *)arg).n) == 5)
 		r.nb_meals = (*(t_philo *)arg).tb[4];
+	r.ct_meals = 0;
+	gettimeofday(&r.current_time, NULL);
 	while (1)
 	{
+		r.tmp = r.ct_meals;
 		usleep((*(t_philo *)arg).nph + 2);
-		gettimeofday(&r.current_time2, NULL);
-		routine_start(arg, r);
+		// routine_start(arg, &r);
+		if (r.tmp == r.ct_meals)
+		{
+			ft_putnbr_fd((r.current_time.tv_sec - r.current_time2.tv_sec), 1);
+			ft_pstr(" ", 1);
+			ft_putnbr_fd(r.who, 1);
+			ft_pstr(" died.\n", 1);
+			break ;
+		}
 	}
 	return (arg);
 }

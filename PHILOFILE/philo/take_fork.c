@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 09:52:16 by azanane           #+#    #+#             */
-/*   Updated: 2022/02/02 10:22:57 by azanane          ###   ########.fr       */
+/*   Updated: 2022/02/02 17:43:23 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	giveback_fork(t_rout *r, int *frk, int i)
 	return (1);
 }
 
-int	pass_fork(t_rout *r, int *frk, int i, int nb)
+int	p_fork(t_rout *r, int *frk, int i, int nb)
 {
 	if (nb == 2)
 		return (giveback_fork(r, frk, i));

@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:52:38 by azanane           #+#    #+#             */
-/*   Updated: 2022/02/02 11:39:06 by azanane          ###   ########.fr       */
+/*   Updated: 2022/02/02 17:48:01 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,16 @@
 
 typedef struct s_rout
 {
+
+	struct timeval	current_time;
 	struct timeval	current_time2;
 	int				nb_philo;
 	int				eat;
 	int				die;
 	int				sleep;
 	int				nb_meals;
+	int				ct_meals;
+	int				tmp;
 	int				who;
 }	t_rout;
 
@@ -40,7 +44,6 @@ typedef struct s_philo
 	int				nph;
 	pthread_t		pid;
 	pthread_mutex_t	mutex_1;
-	struct timeval	current_time;
 }	t_philo;
 
 typedef struct s_val
@@ -54,11 +57,12 @@ typedef struct s_val
 
 int		main(int ac, char **av);
 int		ft_thread(t_val *v, int len);
-void	*routine_initialize(void *arg);
-int		pass_fork(t_rout *r, int *frk, int i, int nb);
+void	*routine(void *arg);
+int		p_fork(t_rout *r, int *frk, int i, int nb);
 int		ft_atoi(const char	*str);
 void	ft_pstr(char	*s, int fd);
 void	ft_putchar_fd(char c, int fd);
+void	ft_putnbr_fd(long n, int fd);
 int		ft_isdigit(int c);
 
 #endif
