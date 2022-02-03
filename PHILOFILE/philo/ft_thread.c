@@ -6,39 +6,57 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 08:40:01 by azanane           #+#    #+#             */
-/*   Updated: 2022/02/02 19:35:51 by azanane          ###   ########.fr       */
+/*   Updated: 2022/02/03 19:56:18 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_thread(t_val *v, int len)
+int	ft_free_struct(t_philo *p, t_variables *var, int len)
 {
-	struct s_philo	p[len];
+	var->i = -1;
+	while (++var->i < len)
+		free(p[var->i].frk);
+	free(p);
+	return (0);
+}
 
-	pthread_mutex_init(&v->mutex, NULL);
-	while (++v->i < v->tab[0])
+int	ft_join(t_philo *p, t_variables *var, int len)
+{
+	while (++var->i < len)
 	{
-		p[v->i].n = -1;
-		p[v->i].tb = malloc(sizeof(int) * v->ct);
-		p->frk = malloc(sizeof(int) * v->tab[0]);
-		while (++(p[v->i].n) < v->tab[0])
-			p[v->i].tb[p[v->i].n] = 1;
-		p[v->i].n = -1;
-		while (++(p[v->i].n) < v->ct)
-			p[v->i].tb[p[v->i].n] = v->tab[p[v->i].n];
-		p[v->i].p = v->i;
-		p[v->i].mutex_1 = v->mutex;
-		if (pthread_create(&p[v->i].pid, NULL, &routine, &p[v->i]) != 0)
-			return (0);
+		if (pthread_join(p[var->i].pid, NULL) != 0)
+			return (ft_free_struct(p, var, len));
+		if (p[var->i].life == 0)
+		{
+			var->n = -1;
+			while (++var->n < len)
+				p[var->i].life = 0;
+			pthread_mutex_destroy(&p[var->n].v.mutex);
+			var->i = len;
+		}
 	}
-	v->i = -1;
-	while (++v->i < v->tab[0])
+	return (1);
+}
+
+int	ft_thread(t_philo *p, t_variables *var, int len)
+{
+	while (++var->i < len)
 	{
-		if (pthread_join(p[v->i].pid, NULL) != 0)
-			return (0);
+		p[var->i].v.which_p = var->i + 1;
+		p[var->i].frk = malloc(sizeof(int) * len);
+		if (!p[var->i].frk)
+			return (ft_free_struct(p, var, var->i));
+		var->n = -1;
+		while (++var->n < len)
+			p[var->i].frk[var->n] = 1;
+		p[var->i].life = 1;
+		pthread_mutex_init(&p[var->i].v.mutex, NULL);
+		if (pthread_create(&p[var->i].pid, NULL, &routine, &p[var->i]) != 0)
+			return (ft_free_struct(p, var, var->i));
 	}
-	pthread_mutex_destroy(&v->mutex);
-	free(v->tab);
+	var->i = -1;
+	if (ft_join(p, var, len) == 1)
+		ft_free_struct(p, var, len);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:52:09 by azanane           #+#    #+#             */
-/*   Updated: 2022/02/02 08:44:00 by azanane          ###   ########.fr       */
+/*   Updated: 2022/02/03 18:34:03 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,62 +31,65 @@ void	ft_error_arg(int i, char *err)
 	exit (-1);
 }
 
-void	ft_getval(char **av, t_val *v)
+void	ft_getval(char **av, t_variables *var)
 {
-	v->tab = malloc(sizeof(int) * v->ct);
-	if (!v->tab)
-		return ;
-	v->i = 0;
-	while (av[++v->i])
-	{
-		v->n = -1;
-		while (av[v->i][++v->n])
-		{
-			if (v->n == 0 || av[v->i][v->n - 1] == ' ')
-				v->tab[v->i - 1] = ft_atoi(av[v->i] + v->n);
-		}
-	}
-	if (v->tab[0] == 0)
-	{
-		free (v->tab);
+	t_philo	*p;
+
+	if (ft_atoi(av[1]) == 0)
 		ft_error_arg(1, "p");
+	p = malloc(sizeof(struct s_philo) * ft_atoi(av[1]));
+	if (!p)
+		return ;
+	while (++var->i < ft_atoi(av[1]))
+	{
+		p[var->i].v.total_v = var->ct;
+		p[var->i].v.total_p = ft_atoi(av[1]);
+		p[var->i].v.time_e = ft_atoi(av[2]);
+		p[var->i].v.time_d = ft_atoi(av[3]);
+		p[var->i].v.time_s = ft_atoi(av[4]);
+		if (var->ct == 5)
+			p[var->i].v.total_m = ft_atoi(av[5]);
+		var->n = -1;
+		p[var->i].frk = malloc(sizeof(int) * ft_atoi(av[1]));
+		while (++var->n < ft_atoi(av[1]))
+			p[var->i].frk[var->n] = 1;
 	}
+	var->i = -1;
+	ft_thread(p, var, ft_atoi(av[1]));
 }
 
-void	ft_check_args(char **av, t_val *v)
+void	ft_check_args(char **av, t_variables *var)
 {
-	v->i = 0;
-	v->ct = 0;
-	while (av[++v->i])
+	var->i = 0;
+	var->ct = 0;
+	while (av[++var->i])
 	{
-		v->n = -1;
-		while (av[v->i][++v->n])
+		var->n = -1;
+		while (av[var->i][++var->n])
 		{
-			if (ft_isdigit(av[v->i][v->n]) == 1
-				&& (v->n == 0 || av[v->i][v->n - 1] == ' '
-					|| av[v->i][v->n - 1] == '+'))
-				v->ct++;
-			if (av[v->i][v->n] == '+' && v->n > 0 && av[v->i][v->n - 1] != ' ')
-				ft_error_arg(v->ct, "");
-			if (ft_isdigit(av[v->i][v->n]) == 0 && av[v->i][v->n] != ' '
-				&& av[v->i][v->n] != '+')
-				ft_error_arg(v->ct, "");
+			if (ft_isdigit(av[var->i][var->n]) == 1
+				&& (var->n == 0 || av[var->i][var->n - 1] == ' '
+					|| av[var->i][var->n - 1] == '+'))
+				var->ct++;
+			if (av[var->i][var->n] == '+'
+				&& var->n > 0 && av[var->i][var->n - 1] != ' ')
+				ft_error_arg(var->ct, "");
+			if (ft_isdigit(av[var->i][var->n]) == 0 && av[var->i][var->n] != ' '
+				&& av[var->i][var->n] != '+')
+				ft_error_arg(var->ct, "");
 		}
 	}
-	if (v->ct < 4 || v->ct > 5)
-		ft_error_arg(v->i, "n");
+	if (var->ct < 4 || var->ct > 5)
+		ft_error_arg(var->i, "n");
 }
 
 int	main(int ac, char **av)
 {
-	t_val			v;
-	static int		len;
+	t_variables			var;
 
-	ft_check_args(av, &v);
-	ft_getval(av, &v);
-	ac++;
-	v.i = -1;
-	len = v.tab[0];
-	ft_thread(&v, len);
+	ft_check_args(av, &var);
+	var.i = -1;
+	ft_getval(av, &var);
+	ac = 0;
 	return (0);
 }
