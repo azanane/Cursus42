@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:52:38 by azanane           #+#    #+#             */
-/*   Updated: 2022/02/03 19:18:47 by azanane          ###   ########.fr       */
+/*   Updated: 2022/02/04 13:31:23 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 
 typedef struct s_rout
 {
+	int				i;
+	int				n;
+	int				time;
 	int				who;
 	int				nb_philo;
 	int				eat;
@@ -29,6 +32,7 @@ typedef struct s_rout
 	int				sleep;
 	int				nb_meals;
 	int				ct_meals;
+	int				ct_time;
 	int				tmp;
 }	t_rout;
 
@@ -42,6 +46,7 @@ typedef struct s_val
 	int				total_m;
 	int				total_v;
 	pthread_mutex_t	mutex;
+	pthread_mutex_t	*mutex_tab;
 }	t_val;
 
 typedef struct s_philo
@@ -61,17 +66,19 @@ typedef struct s_variables
 {
 	int				i;
 	int				n;
+	int				j;
 	int				ct;
 }	t_variables;
 
 int		main(int ac, char **av);
 int		ft_thread(t_philo *p, t_variables *var, int len);
 void	*routine(void *arg);
-int		p_fork(t_rout *r, int *frk, int i, int nb);
+void	mutex_lock_all(void *arg, t_rout *r);
+void	mutex_unlock_all(void *arg, t_rout *r);
+int		fork_avaliable(void *arg, t_rout *r);
 int		ft_atoi(const char	*str);
 void	ft_pstr(char	*s, int fd);
 void	ft_putchar_fd(char c, int fd);
-void	ft_putnbr_fd(long n, int fd);
 int		ft_isdigit(int c);
 
 #endif
