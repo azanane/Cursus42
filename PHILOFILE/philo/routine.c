@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 08:05:40 by azanane           #+#    #+#             */
-/*   Updated: 2022/02/04 13:45:29 by azanane          ###   ########.fr       */
+/*   Updated: 2022/02/04 15:02:16 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,7 @@ void	*routine(void *arg)
 			if (r.ct_time == r.die)
 			{
 				if (r.ct_meals == r.tmp)
-				{
 					(*(t_philo *)arg).life = 0;
-					exit (1);
-				}
 				else
 				{
 					r.tmp = r.ct_meals;
