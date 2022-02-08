@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:52:09 by azanane           #+#    #+#             */
-/*   Updated: 2022/02/03 18:34:03 by azanane          ###   ########.fr       */
+/*   Updated: 2022/02/08 17:40:35 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,11 @@ void	ft_getval(char **av, t_variables *var)
 	{
 		p[var->i].v.total_v = var->ct;
 		p[var->i].v.total_p = ft_atoi(av[1]);
-		p[var->i].v.time_e = ft_atoi(av[2]);
-		p[var->i].v.time_d = ft_atoi(av[3]);
+		p[var->i].v.time_d = ft_atoi(av[2]);
+		p[var->i].v.time_e = ft_atoi(av[3]);
 		p[var->i].v.time_s = ft_atoi(av[4]);
 		if (var->ct == 5)
 			p[var->i].v.total_m = ft_atoi(av[5]);
-		var->n = -1;
-		p[var->i].frk = malloc(sizeof(int) * ft_atoi(av[1]));
-		while (++var->n < ft_atoi(av[1]))
-			p[var->i].frk[var->n] = 1;
 	}
 	var->i = -1;
 	ft_thread(p, var, ft_atoi(av[1]));

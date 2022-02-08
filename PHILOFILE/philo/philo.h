@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:52:38 by azanane           #+#    #+#             */
-/*   Updated: 2022/02/04 13:31:23 by azanane          ###   ########.fr       */
+/*   Updated: 2022/02/08 18:44:03 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_rout
 {
 	int				i;
 	int				n;
-	int				time;
+	suseconds_t		time;
 	int				who;
 	int				nb_philo;
 	int				eat;
@@ -34,6 +34,8 @@ typedef struct s_rout
 	int				ct_meals;
 	int				ct_time;
 	int				tmp;
+	struct timeval	st;
+	struct timeval	end;
 }	t_rout;
 
 typedef struct s_val
@@ -46,20 +48,20 @@ typedef struct s_val
 	int				total_m;
 	int				total_v;
 	pthread_mutex_t	mutex;
-	pthread_mutex_t	*mutex_tab;
+	pthread_mutex_t	mutex_right;
 }	t_val;
 
 typedef struct s_philo
 {
 	int				p;
 	int				n;
-	int				*frk;
 	int				life;
 	pthread_t		pid;
 	t_val			v;
-	struct timeval	current_time;
-	struct timeval	current_time2;
-	struct timeval	current_time3;
+	struct timeval	st;
+	struct timeval	end;
+	struct timeval	last_meal;
+	struct timeval	check;
 }	t_philo;
 
 typedef struct s_variables
@@ -67,15 +69,14 @@ typedef struct s_variables
 	int				i;
 	int				n;
 	int				j;
+	int				time_die;
 	int				ct;
 }	t_variables;
 
 int		main(int ac, char **av);
 int		ft_thread(t_philo *p, t_variables *var, int len);
 void	*routine(void *arg);
-void	mutex_lock_all(void *arg, t_rout *r);
-void	mutex_unlock_all(void *arg, t_rout *r);
-int		fork_avaliable(void *arg, t_rout *r);
+float	getime(struct timeval *st, struct timeval *end);
 int		ft_atoi(const char	*str);
 void	ft_pstr(char	*s, int fd);
 void	ft_putchar_fd(char c, int fd);

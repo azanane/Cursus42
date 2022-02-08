@@ -6,7 +6,7 @@
 #    By: azanane <azanane@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/14 14:27:59 by azanane           #+#    #+#              #
-#    Updated: 2022/02/04 13:09:12 by azanane          ###   ########.fr        #
+#    Updated: 2022/02/08 18:13:51 by azanane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,7 @@ GREEN=$'\x1b[32m
 BLUE=$'\x1b[34m
 
 LST_SRCS		=	ft_atoi.c ft_isdigit.c ft_putchar_fd.c ft_putstr_fd.c \
-					philo.c ft_thread.c routine.c \
-					mutex_lock_unlock_all.c fork_avaliable.c \
+					philo.c ft_thread.c routine.c getime.c \
 
 LST_OBJS		=	${LST_SRCS:.c=.o}
 
