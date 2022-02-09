@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:52:38 by azanane           #+#    #+#             */
-/*   Updated: 2022/02/08 18:44:03 by azanane          ###   ########.fr       */
+/*   Updated: 2022/02/09 13:40:09 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef struct s_rout
 {
 	int				i;
 	int				n;
-	suseconds_t		time;
 	int				who;
 	int				nb_philo;
 	int				eat;
@@ -47,8 +46,9 @@ typedef struct s_val
 	int				time_d;
 	int				total_m;
 	int				total_v;
-	pthread_mutex_t	mutex;
-	pthread_mutex_t	mutex_right;
+	pthread_mutex_t	mutex_in;
+	pthread_mutex_t	*mutex;
+	pthread_mutex_t	*mutex_right;
 }	t_val;
 
 typedef struct s_philo
@@ -69,14 +69,15 @@ typedef struct s_variables
 	int				i;
 	int				n;
 	int				j;
-	int				time_die;
+	float			time_die;
+	int				brk;
 	int				ct;
 }	t_variables;
 
 int		main(int ac, char **av);
 int		ft_thread(t_philo *p, t_variables *var, int len);
 void	*routine(void *arg);
-float	getime(struct timeval *st, struct timeval *end);
+float	gtime(struct timeval *st, struct timeval *end);
 int		ft_atoi(const char	*str);
 void	ft_pstr(char	*s, int fd);
 void	ft_putchar_fd(char c, int fd);

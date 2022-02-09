@@ -6,7 +6,7 @@
 #    By: azanane <azanane@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/14 14:27:59 by azanane           #+#    #+#              #
-#    Updated: 2022/02/08 18:13:51 by azanane          ###   ########.fr        #
+#    Updated: 2022/02/09 13:40:36 by azanane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ INCLUDES	=	philo.h
 
 CC			= gcc
 
-CFLAGS		= -Wall -Wextra -Werror 
+CFLAGS		= -Wall -Wextra -Werror -g
 
 NAME		=	philo
 
