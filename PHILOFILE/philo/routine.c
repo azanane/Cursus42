@@ -6,7 +6,7 @@
 /*   By: azanane <azanane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 08:05:40 by azanane           #+#    #+#             */
-/*   Updated: 2022/02/09 13:40:09 by azanane          ###   ########.fr       */
+/*   Updated: 2022/02/09 15:28:09 by azanane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_initialize(void *arg, t_rout *r)
 	r->die = (*(t_philo *)arg).v.time_d;
 	if (((*(t_philo *)arg).v.total_v) == 5)
 		r->nb_meals = (*(t_philo *)arg).v.total_m;
-	r->ct_meals = 1;
+	r->ct_meals = 0;
 	gettimeofday(&(*(t_philo *)arg).st, NULL);
 	gettimeofday(&r->end, NULL);
 	r->st = (*(t_philo *)arg).st;
@@ -89,7 +89,7 @@ void	*routine(void *arg)
 		usleep(r.eat / 2);
 	if (((*(t_philo *)arg).v.total_v) == 5)
 	{
-		while ((*(t_philo *)arg).life == 1 && r.ct_meals <= r.nb_meals)
+		while ((*(t_philo *)arg).life == 1 && r.ct_meals < r.nb_meals)
 			routine_start(arg, &r);
 	}
 	else
